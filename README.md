@@ -1,15 +1,4 @@
-# 📘 Google-Books-Search
-
-#### Google Books Search APP
-
-## 
-![concert](./client/public/w19.png)
-#
-#### 🔎click the book title for detailed info
-![concert](./client/public/Snipaste_2019-04-12_12-49-24.png)
-#
-#### 📙saved page
-![concert](./client/public/Snipaste_2019-04-12_12-49-58.png)
+# PAXI
 
 #### 📗Technologies
 - [x] MongoDB Mongoose
@@ -27,8 +16,8 @@
 * open browser and load http://localhost:3000/
 
 #### 📓 Author
-* [Isaac Wu](https://github.com/squall2046)
-* [App demo](https://googlebooks-iw.herokuapp.com/)
+<!-- * [Isaac Wu](https://github.com/squall2046)
+* [App demo](https://googlebooks-iw.herokuapp.com/) -->
 
 ## Copyright
-Isaac Wu © 2019 All Rights Reserved
+© 2019 All Rights Reserved
