@@ -43,7 +43,7 @@ class Customer extends Component {
   };
 
   createPackBtn = () => {
-    console.log(this.state)
+    // console.log(this.state)
     API.createPackBtn(this.state)
       .then(res => alert(`Your ${res.data.ops[0].title} has posted!`))
       .then(res => window.location.replace("/"))

@@ -56,6 +56,7 @@ class Profile extends Component {
                       <SaveBtn onClick={() => this.saveBtnSubmit(pack._id)} />
                       {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log(" pack w/o image")}
                       <div>Description: {pack.description}</div>
+                      <div>Date(UTC): {pack.date}</div>
                     </ListItem>
                   ))
                 }

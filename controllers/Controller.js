@@ -4,7 +4,7 @@ const db = require("../models");
 module.exports = {
 
   createPack: function (req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     db.Pack.collection.insertMany([{
       title: req.body.title,
       from: req.body.from,
@@ -16,14 +16,14 @@ module.exports = {
       receiver: req.body.receiver,
       fee: req.body.fee,
     }])
-      .then(dbModel => { res.json(dbModel), console.log(dbModel) })
+      .then(dbModel => { res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
 
   findPacks: function (req, res) {
     db.Pack.find()
       // .sort({ date: -1 })
-      .then(dbModel => { res.json(dbModel), console.log(dbModel) })
+      .then(dbModel => { res.json(dbModel), console.log("find from mongo",dbModel) })
       .catch(err => res.status(422).json(err));
   },
 

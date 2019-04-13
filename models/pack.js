@@ -11,7 +11,7 @@ const packSchema = new Schema({
   description: { type: String, required: true },
   receiver: { type: String, required: true },
   fee: { type: String, required: true },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
 });
 
 const Pack = mongoose.model("Pack", packSchema);
