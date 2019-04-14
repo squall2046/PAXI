@@ -16,7 +16,6 @@ app.use(routes);
 app.use(express.static("client/public"));
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/paxiDB")
 const mongoURL = process.env.MONGODB_URI || "mongodb://localhost/paxiDB"
 mongoose.connect(mongoURL, {useNewUrlParser: true})
   .then(() => {

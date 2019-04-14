@@ -7,10 +7,13 @@ const packSchema = new Schema({
   to: { type: String, required: true },
   size: { type: String, required: true },
   weight: { type: String, required: true },
-  image: { type: String },
-  description: { type: String, required: true },
   receiver: { type: String, required: true },
   fee: { type: String, required: true },
+  description: { type: String },
+  image: { type: String },
+
+  isPicked: { type: Boolean, default: false },
+  isDelivered: { type: Boolean, default: false },
   date: { type: Date, default: Date.now },
 });
 

@@ -4,7 +4,7 @@ import Results from "../components/Results";
 // import SaveBtn from "../components/SaveBtn";
 // import UnsaveBtn from "../components/UnsaveBtn";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+// import { List, ListItem } from "../components/List";
 import "./style.css";
 // import { Link } from "react-router-dom";
 // import { relative } from "path";

@@ -3,15 +3,14 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   fullName: { type: String, required: true },
-  idNum: { type: String, required: true },
-  ssn: { type: String, required: true },
-  address: { type: String, required: true },
-  image: { type: String, required: true },
-  pack: [{
-    type: Schema.Types.ObjectId,
-    ref: "pack"
-  }],
-  date: { type: Date, default: Date.now }
+  email: { type: String },
+  phone: { type: String },
+  address: { type: String },
+  idNum: { type: String },
+  ssn: { type: String },
+  image: { type: String },
+  date: { type: Date, default: Date.now },
+  pack: [{ type: Schema.Types.ObjectId, ref: "pack" }]
 });
 
 const User = mongoose.model("User", userSchema);

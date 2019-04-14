@@ -4,26 +4,30 @@ const db = require("../models");
 module.exports = {
 
   createPack: function (req, res) {
-    // console.log(req.body)
-    db.Pack.collection.insertMany([{
-      title: req.body.title,
-      from: req.body.from,
-      to: req.body.to,
-      size: req.body.size,
-      weight: req.body.weight,
-      image: req.body.image,
-      description: req.body.description,
-      receiver: req.body.receiver,
-      fee: req.body.fee,
-    }])
-      .then(dbModel => { res.json(dbModel)})
+    console.log(req.body)
+    db.Pack.create(req.body)
+      .then(dbModel => { res.json(dbModel) })
       .catch(err => res.status(422).json(err));
   },
 
   findPacks: function (req, res) {
     db.Pack.find()
-      // .sort({ date: -1 })
-      .then(dbModel => { res.json(dbModel), console.log("find from mongo",dbModel) })
+      .sort({ date: -1 })
+      .then(dbModel => { res.json(dbModel), console.log("find all from mongo", "dbModel") })
+      .catch(err => res.status(422).json(err));
+  },
+
+  updatePack: function (req, res) {
+    console.log("req.params.packId", req.params.packId)
+    db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
+  findUnpicked: function (req, res) {
+    db.Pack.find({ isPicked: false })
+      .sort({ date: -1 })
+      .then(dbModel => { res.json(dbModel); console.log("find unpicked from mongo", "dbModel") })
       .catch(err => res.status(422).json(err));
   },
 
