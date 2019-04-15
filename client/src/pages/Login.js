@@ -1,42 +1,13 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Jumbotron from "../components/Jumbotron";
-import Results from "../components/Results";
-import SaveBtn from "../components/SaveBtn";
-// import UnsaveBtn from "../components/UnsaveBtn";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Form, Input, FormBtn } from "../components/Form";
+import { FormBtn } from "../components/Form";
 import "./style.css";
-// import { Link } from "react-router-dom";
-// import { relative } from "path";
-// import Description from "../components/Description";
+
 class Login extends Component {
+
   state = {
-    books: [],
-    title: ""
-  };
-
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
-
-  // componentWillMount() {
-  //   this.loadBooks();
-  // }
-
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
+    email: "",
+    password: "",
   };
 
   handleInputChange = event => {
@@ -46,112 +17,61 @@ class Login extends Component {
     });
   };
 
-  searchBtnSubmit = event => {
-    event.preventDefault();
-    if (this.state.title) {
-      // alert(this.state.title)
-      this.searchBooks(this.state.title)
-
-      // API.searchBooks(this.state.title)
-      //   .then(res => {
-      //     this.setState({ books: res.data },
-      //       () => {
-      //         let bookInfo = this.state.books.items.map(book => {
-      //           return [
-      //             book.volumeInfo.title,
-      //             book.volumeInfo.subtitle,
-      //             book.volumeInfo.authors,
-      //             book.volumeInfo.averageRating,
-      //             book.volumeInfo.imageLinks.thumbnail,
-      //             book.volumeInfo.infoLink,
-      //             book.volumeInfo.description]
-      //         });
-      //         console.log(bookInfo)
-      //       }
-      //     )
-      //     // console.log(res.data);
-      //     // console.log(this.state.books.items[0].volumeInfo.title)
-      //   })
-      //   .catch(err => console.log(err));
-    }
-  };
-
-  searchBooks = title => {
-    API.searchBooks(title)
+  findUserBtn = () => {
+    // const {email, password} = this.state;
+    // const userObj = {email, password};
+    // API.findUserBtn(userObj)
+    console.log("login:",this.state)
+    API.findUserBtn(this.state)
       .then(res => {
-        this.setState({ books: res.data.items });
-        // console.log(this.state.books);
-        // console.log(this.state.books[0].volumeInfo.title);
+        this.setState({ user: res.data });
+        console.log(this.state)
       })
       .catch(err => console.log(err));
   };
 
-  saveBtnSubmit = bookId => {
-    // let theBook = this.state.books.map((book) => (book.id === bookId));
-    let theBook = this.state.books.filter((book) => (book.id === bookId));
-    // console.log(theBook)
-    // 'theBook' is 'bookData' in utils/API
-    API.saveTheBook(theBook)
-      .then(res => { alert("The Book has saved!") })
 
-  }
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron />
+      <div className="row mt-5">
+        <div className="col-md-6 m-auto">
+          <div className="card card-body">
+            <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>  Login</h1>
+            {/* <% include ./partials/messages %> */}
+            <form action="/login" method="POST">
+            {/* <form> */}
+              <div className="form-group">
+                <span>Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  placeholder="Enter Email"
+                />
 
-            <Form>
-              <h3>Book Search</h3>
-              <Input
-                name="title"
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                placeholder="Book Title (required)"
-              />
-              <FormBtn
-                disabled={!(this.state.title)}
-                onClick={this.searchBtnSubmit}
-              />
-            </Form>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="sm-12">
-            <Results>
-              <div className="h1">Results</div>
-              {this.state.books.length ? (
-                <List>
-                  {this.state.books
-                    .map(book => (
-                      <ListItem key={book.id} children={book}>
-                        <a href={book.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer" >
-                          <h3>{book.volumeInfo.title}</h3>
-                        </a>
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  placeholder="Enter Password"
+                />
+              </div>
+              <FormBtn type="submit" className="btn btn-primary btn-block" onClick={this.findUserBtn} />
+            </form>
+            <p className="lead mt-4">
+              No Account? <a href="/register">Register</a>
+            </p>
+          </div>
+        </div>
+      </div>
 
-                        {book.volumeInfo.subtitle ? <h4>—— {book.volumeInfo.subtitle}</h4> : console.log(" books w/o subtitles")}
-                        <h5>by <i>{book.volumeInfo.authors}</i></h5>
-                        {book.volumeInfo.averageRating ? <h6 className="rating">Rating: {book.volumeInfo.averageRating}</h6> : console.log(" books w/o rating")}
-                        <SaveBtn onClick={() => this.saveBtnSubmit(book.id)} />
-                        {/* <UnsaveBtn onClick={() => this.UnsaveBtnSubmit(book.id)} /> */}
-                        {/* <Description img={book.image} des={book.description} > */}
-                        {book.volumeInfo.imageLinks ? <img className="col-md-3 mx-auto img" alt="book" src={book.volumeInfo.imageLinks.thumbnail} /> : console.log(" books w/o image")}
-                        <div className="col-md-9 mx-auto des">{book.volumeInfo.description}</div>
-                        {/* </Description> */}
-                      </ListItem>
-                    ))
-                  }
-                </List>
-              ) : (
-                  <h3> &nbsp; No Results to Display</h3>
-                )}
-            </Results>
-          </Col>
-        </Row>
-      </Container>
-    );
+    )
   }
 }
 

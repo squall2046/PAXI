@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import Nav from "../components/Nav";
 import Results from "../components/Results";
 // import SaveBtn from "../components/SaveBtn";
 // import UnsaveBtn from "../components/UnsaveBtn";
@@ -34,20 +35,23 @@ class Status extends Component {
 
   UnsaveBtnSubmit = bookId => {
     API.unsaveTheBook(bookId)
-    .then(res => this.loadBooks())
-    .catch(err => console.log(err));
+      .then(res => this.loadBooks())
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Results>
-            </Results>
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        <Nav />
+        <Container fluid>
+          <Row>
+            <Col size="md-12">
+              <Results>
+              </Results>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

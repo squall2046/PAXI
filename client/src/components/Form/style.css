@@ -1,9 +1,9 @@
 #form {
-  text-align: left;
+  text-align: center;
 }
 
 .input {
-  width: 40%;
+  width: 60%;
 
   border-radius: 25px;
   box-shadow: inset 0 1px 4px rgba(0,0,0,0.3);

@@ -12,7 +12,7 @@ export function Form(props) {
 export function Input(props) {
   return (
     <div className="form-group">
-      <input className="form-control input" {...props} />
+      <input className="form-control mx-auto input" {...props} />
     </div>
   );
 }

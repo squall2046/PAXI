@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-// import Results from "../components/Results";
+import Nav from "../components/Nav";
 import PickBtn from "../components/PickBtn";
 import MapBtn from "../components/MapBtn";
 import { Col, Row, Container } from "../components/Grid";
@@ -45,37 +45,40 @@ class Carrier extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-5">
-            <div className="h3">Waiting List</div>
-            {this.state.pack.length ? (
-              <List>
-                {this.state.pack
-                  .map(pack => (
-                    <ListItem key={pack._id} children={pack}>
-                      <h3>{pack.title}</h3>
-                      <div>From: {pack.from} - To: {pack.to}</div>
-                      <div>Sender: ???</div>
-                      <div>Receiver: {pack.receiver}</div>
+      <div>
+        <Nav />
+        <Container fluid>
+          <Row>
+            <Col size="md-5">
+              <div className="h3">Waiting List</div>
+              {this.state.pack.length ? (
+                <List>
+                  {this.state.pack
+                    .map(pack => (
+                      <ListItem key={pack._id} children={pack}>
+                        <h3>{pack.title}</h3>
+                        <div>From: {pack.from} - To: {pack.to}</div>
+                        <div>Sender: ???</div>
+                        <div>Receiver: {pack.receiver}</div>
 
-                      <div>Package size: {pack.size}</div>
-                      <div>Package weight: {pack.weight}</div>
-                      <div>Shipping fee: $ {pack.fee}</div>
-                      <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
-                      <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
-                      {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log(" pack w/o image")}
-                      <div>Description: {pack.description}</div>
-                    </ListItem>
-                  ))
-                }
-              </List>
-            ) : (
-                <h3> &nbsp; No shipping packages </h3>
-              )}
-          </Col>
-        </Row>
-      </Container>
+                        <div>Package size: {pack.size}</div>
+                        <div>Package weight: {pack.weight}</div>
+                        <div>Shipping fee: $ {pack.fee}</div>
+                        <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
+                        <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
+                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log(" pack w/o image")}
+                        <div>Description: {pack.description}</div>
+                      </ListItem>
+                    ))
+                  }
+                </List>
+              ) : (
+                  <h3> &nbsp; No shipping packages </h3>
+                )}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
