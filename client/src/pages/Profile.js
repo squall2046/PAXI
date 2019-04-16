@@ -7,20 +7,20 @@ import "./style.css";
 // import { Link } from "react-router-dom";
 
 
-let id = window.location.pathname.split("profile/").slice(1);
-console.log(id)
+// let id = window.location.pathname.split("profile/").slice(1);
+// console.log(id)
 
 class Profile extends Component {
 
-  findUser = () => {
-    API.findUser(id)
-      .then(res => {
-        // alert(`welcome ${res.data[0].name}!`);
-        this.setState({ user: res.data[0] });
-        console.log("state user:", this.state.user);
-      })
-      .catch(err => console.log(err));
-  }
+  // findUser = () => {
+  //   API.findUser(id)
+  //     .then(res => {
+  //       // alert(`welcome ${res.data[0].name}!`);
+  //       this.setState({ user: res.data[0] });
+  //       console.log("state user:", this.state.user);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   state = {
     pack: [],
@@ -30,7 +30,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.findPacks();
-    this.findUser();
+    // this.findUser();
   };
 
   findPacks = () => {
