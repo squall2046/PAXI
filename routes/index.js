@@ -77,22 +77,22 @@ router.post('/logout', (req, res) => {
 });
 
 // Login
-// router.post('/login', (req, res, next) => {
-//   console.log(req.body)
-//   passport.authenticate('local', {
-//     successRedirect: '/profile',
-//     failureRedirect: '/login',
-//     failureFlash: true
-//   })(req, res, next);
-// });
+router.post('/login', (req, res, next) => {
+  console.log(req.body)
+  passport.authenticate('local', {
+    successRedirect: '/profile',
+    failureRedirect: '/login',
+    failureFlash: true
+  })(req, res, next);
+});
 
-router.post('/login',
-  passport.authenticate('local'),
-  function (req, res) {
-    console.log(req.user._id);
-    res.redirect('/profile/' + req.user._id);
-    // res.redirect('/profile');
-  });
+// router.post('/login',
+//   passport.authenticate('local'),
+//   function (req, res) {
+//     console.log(req.user._id);
+//     res.redirect('/profile/' + req.user._id);
+//     // res.redirect('/profile');
+//   });
 
 // API findUser
 router.route('/findUser/:id')
@@ -103,7 +103,7 @@ router.route('/findUser/:id')
 router.get('/profile', ensureAuthenticated, (req, res) => {
   //   const user = req.body;
   // res.json(user);
-  res.redirect('/customer')
+  // res.redirect('/customer')
 });
 
 
