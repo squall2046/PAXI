@@ -34,7 +34,7 @@ class Customer extends Component {
     // console.log(this.state)
     API.createPackBtn(this.state)
       .then(res => alert(`Your ${res.data.title} has posted!`))
-      .then(res => window.location.replace("/"))
+      .then(res => window.location.replace("/profile"))
       .catch(err => console.log(err));
   }
 

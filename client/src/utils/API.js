@@ -8,7 +8,7 @@ export default {
 
   findUserBtn: (userLogInfo) => {
     console.log("reactAPI client req: find the user to login");
-    return axios.get("/api/user/find", userLogInfo);
+    return axios.post("/api/user/find", userLogInfo);
   },
 
   createPackBtn: (packInfo) => {

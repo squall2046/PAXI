@@ -17,17 +17,17 @@ const Controller = require("../controllers/Controller");
 
 
 // Profile
-router.get('/profile', ensureAuthenticated, (req, res) =>
-  res.redirect('/profile', {
-    user: req.user
-  })
-);
+// router.get('/profile', ensureAuthenticated, (req, res) =>
+//   res.redirect('/profile', {
+//     user: req.user
+//   })
+// );
 
 // // Profile
-// router.get('/Profile', ensureAuthenticated, (req, res) => {
-//   const user = req.body;
-//   res.json(user);
-// });
+router.get('/Profile', ensureAuthenticated, (req, res) => {
+  const user = req.body;
+  res.json(user);
+});
 
 // post new user
 router
@@ -37,7 +37,7 @@ router
 // find existed user
 router
   .route("/api/user/find")
-  .get(Controller.findUser);
+  .post(Controller.findUser);
 
 // post new pack
 router

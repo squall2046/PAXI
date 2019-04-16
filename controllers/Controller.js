@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const db = require("../models/index");
@@ -85,10 +87,18 @@ module.exports = {
   // },
 
   findUser: function (req, res) {
-    console.log(req.body)
-    db.User.find({ email: req.body.email, password: req.body.password })
-      .then(dbModel => { res.redirect('/profile'); console.log(dbModel) })
-      .catch(err => res.status(422).json(err));
+    console.log("login infor", req.body)
+    db.User.findOne({ email: req.body.email })
+      .then(dbModel => {
+        console.log("then:", dbModel);
+        // ?????????????????????
+        // ?????????????????????
+        // ?????????????????????
+        // ?????????????????????
+        //how to load this user to profile page
+      })
+
+    // .catch(err => res.status(422).json(err));
   },
 
   createPack: function (req, res) {
