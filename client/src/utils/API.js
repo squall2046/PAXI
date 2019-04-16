@@ -31,8 +31,8 @@ export default {
     return axios.get("/api/pack/find/unpicked");
   },
 
-  logout: () => {
-    console.log("reactAPI client req: find the user to login");
-    return axios.get("/logout");
-  },
+  // logout: () => {
+  //   console.log("reactAPI client req: find the user to login");
+  //   return axios.get("/logout");
+  // },
 };

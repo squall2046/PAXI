@@ -23,8 +23,6 @@ router.post('/register', (req, res) => {
 
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please enter all fields' });
-    // res.json({ error: 'Please enter all fields'});
-    // res.redirect('/register');
   }
 
   if (password != password2) {
@@ -37,7 +35,9 @@ router.post('/register', (req, res) => {
 
   if (errors.length > 0) {
     res.redirect('/register');
-  } else {
+  }
+
+  else {
     User.findOne({ email: email }).then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
@@ -71,11 +71,11 @@ router.post('/register', (req, res) => {
 });
 
 // Logout
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.logout();
-  req.flash('success_msg', 'You are logged out');
   res.redirect('/');
 });
+
 
 // Login
 router.post('/login', (req, res, next) => {
@@ -92,13 +92,6 @@ router.get('/profile', ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
-
-// Profile
-// router.get('/profile', ensureAuthenticated, (req, res) =>
-//   res.redirect('/profile', {
-//     user: req.user
-//   })
-// );
 
 // // Profile
 // router.get('/Profile', ensureAuthenticated, (req, res) => {

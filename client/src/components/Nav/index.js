@@ -13,7 +13,11 @@ function Nav(props) {
         <div className="navbar-nav">
           <a className="nav-item nav-link active text-muted" href="/customer">Send A Package</a>
           <a className="nav-item nav-link text-muted" href="/carrier">Become Carrier</a>
-          <a className="nav-item nav-link text-muted" href="/logout">Logout</a>
+          {/* <a className="nav-item nav-link text-muted" href="/logout">Logout</a> */}
+          <form action="/logout" method="POST">
+            <button type="submit" className="btn btn-primary btn-block">Logout</button>
+          </form>
+
         </div>
       </div>
     </nav>

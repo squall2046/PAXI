@@ -8,11 +8,6 @@ class Logout extends Component {
     this.logout();
   };
 
-  componentWillMount() {
-    this.logout();
-  };
-
-
   logout = () => {
     API.logout()
     .then(console.log("logout"))
