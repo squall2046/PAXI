@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+// import API from "../utils/API";
 import { FormBtn } from "../components/Form";
 import "./style.css";
 
@@ -22,16 +22,16 @@ class Register extends Component {
     });
   };
 
-  createUserBtn = () => {
-    console.log(this.state)
-    API.createUserBtn(this.state)
-      .then(res => {
-        console.log(res);
-        alert(`Thank you for register ${res.data.name}, please login...`);
-        window.location.replace("/login")
-      })
-      .catch(err => console.log(err));
-  }
+  // createUserBtn = () => {
+  //   console.log(this.state)
+  //   API.createUserBtn(this.state)
+  //     .then(res => {
+  //       console.log(res);
+  //       alert(`Thank you for register ${res.data.name}, please login...`);
+  //       window.location.replace("/login")
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   // render() {
   //   return (
@@ -140,7 +140,7 @@ class Register extends Component {
         <div className="col-md-6 m-auto">
           <div className="card card-body">
             <h1 className="text-center mb-3"><i className="fas fa-user-plus"></i> Register</h1>
-            <form action="/users/register" method="POST">
+            <form action="/register" method="POST">
             {/* <form> */}
               <div className="form-group">
                 <span>Name</span>
@@ -190,7 +190,8 @@ class Register extends Component {
                   placeholder="Confirm Password"
                 />
               </div>
-              <FormBtn type="submit" onClick={this.createUserBtn} className="btn btn-primary btn-block"> Register</FormBtn>
+              {/* <FormBtn type="submit" onClick={this.createUserBtn} className="btn btn-primary btn-block"> Register</FormBtn> */}
+              <FormBtn type="submit" className="btn btn-primary btn-block"> Register</FormBtn>
             </form>
             <p className="lead mt-4">Have An Account? <a href="/login">Login</a></p>
           </div>

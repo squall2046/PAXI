@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default {
-  createUserBtn: (userInfo) => {
-    console.log("reactAPI client req:", "userInfo");
-    return axios.post("/api/user/create", userInfo);
-  },
+  // createUserBtn: (userInfo) => {
+  //   console.log("reactAPI client req:", "userInfo");
+  //   return axios.post("/api/user/create", userInfo);
+  // },
 
   findUserBtn: (userLogInfo) => {
     console.log("reactAPI client req: find the user to login");
@@ -29,5 +29,10 @@ export default {
   findUnpicked: () => {
     console.log("reactAPI client req: find unpicked packs");
     return axios.get("/api/pack/find/unpicked");
+  },
+
+  logout: () => {
+    console.log("reactAPI client req: find the user to login");
+    return axios.get("/logout");
   },
 };
