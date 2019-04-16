@@ -11,6 +11,7 @@ import Status from "./pages/Status";
 import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
+
   render() {
     return (
       <Router>
@@ -20,16 +21,18 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/carrier" component={Carrier} />
-            <Route exact path="/customer" component={Customer} />
-            <Route exact path="/status" component={Status} />
+            <Route path="/profile" component={Profile} />
+            {/* <Route path="/profile/:id" component={Profile} /> */}
+            <Route path="/customer" component={Customer} />
+            <Route path="/carrier" component={Carrier} />
+            <Route path="/status" component={Status} />
             <Route component={NoMatch} />
           </Switch>
         </div>
       </Router>
     );
   }
+
 }
 
 export default App;

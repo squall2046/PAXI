@@ -3,8 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { ensureAuthenticated } = require('../config/auth');
 const Controller = require("../controllers/Controller");
+const { ensureAuthenticated } = require('../config/auth');
 
 
 // Welcome Page
@@ -60,7 +60,7 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
-                res.redirect('/profile');
+                res.redirect('/login');
               })
               .catch(err => console.log(err));
           });
@@ -76,58 +76,35 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-
 // Login
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
-    failureFlash: true
-  })(req, res, next);
-});
-
-// profile
-router.get('/profile', ensureAuthenticated, (req, res) =>
-  res.redirect('/profile', {
-    user: req.user
-  })
-);
-
-// // Profile
-// router.get('/Profile', ensureAuthenticated, (req, res) => {
-//   const user = req.body;
-//   res.json(user);
+// router.post('/login', (req, res, next) => {
+//   console.log(req.body)
+//   passport.authenticate('local', {
+//     successRedirect: '/profile',
+//     failureRedirect: '/login',
+//     failureFlash: true
+//   })(req, res, next);
 // });
 
-// post new user
-// router
-//   .route("/api/user/create")
-//   .post(Controller.createUser)
+router.post('/login',
+  passport.authenticate('local'),
+  function (req, res) {
+    console.log(req.user._id);
+    res.redirect('/profile/' + req.user._id);
+    // res.redirect('/profile');
+  });
 
-// find existed user
-router
-  .route("/api/user/find")
-  .post(Controller.findUser);
+// API findUser
+router.route('/findUser/:id')
+  .get(Controller.findUser);
 
-// post new pack
-router
-  .route("/api/pack/create")
-  .post(Controller.createPack)
 
-// find all packs
-router
-  .route("/api/pack/find")
-  .get(Controller.findPacks);
-
-// carrier pick a pack
-router
-  .route("/api/pack/pick/:packId")
-  .put(Controller.updatePack);
-
-// carrier find all available packs
-router
-  .route("/api/pack/find/unpicked")
-  .get(Controller.findUnpicked);
+// // Profile
+router.get('/profile', ensureAuthenticated, (req, res) => {
+  //   const user = req.body;
+  // res.json(user);
+  res.redirect('/customer')
+});
 
 
 module.exports = router;

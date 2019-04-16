@@ -5,14 +5,32 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import "./style.css";
 // import { Link } from "react-router-dom";
+
+
+let id = window.location.pathname.split("profile/").slice(1);
+console.log(id)
+
 class Profile extends Component {
+
+  findUser = () => {
+    API.findUser(id)
+      .then(res => {
+        // alert(`welcome ${res.data[0].name}!`);
+        this.setState({ user: res.data[0] });
+        console.log("state user:", this.state.user);
+      })
+      .catch(err => console.log(err));
+  }
+
   state = {
     pack: [],
     carry: [],
+    user: ""
   };
 
   componentDidMount() {
     this.findPacks();
+    this.findUser();
   };
 
   findPacks = () => {
@@ -23,16 +41,6 @@ class Profile extends Component {
       })
       .catch(err => console.log(err));
   };
-
-  saveBtnSubmit = bookId => {
-    // let theBook = this.state.books.map((book) => (book.id === bookId));
-    let theBook = this.state.books.filter((book) => (book.id === bookId));
-    // console.log(theBook)
-    // 'theBook' is 'bookData' in utils/API
-    API.saveTheBook(theBook)
-      .then(res => { alert("The Book has saved!") })
-
-  }
 
   render() {
     return (
@@ -45,6 +53,7 @@ class Profile extends Component {
               {this.state.pack.length ? (
                 <List>
                   {this.state.pack
+                  // {this.state.user.pack
                     .map(pack => (
                       <ListItem key={pack._id} children={pack}>
                         <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
