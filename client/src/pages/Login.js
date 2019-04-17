@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-
 import API from "../utils/API";
-import { FormBtn } from "../components/Form";
 import "./style.css";
-import { set } from "mongoose";
 
 class Login extends Component {
 
@@ -20,14 +17,13 @@ class Login extends Component {
     this.setState({ [name]: value.trim() });
   };
 
-  loginUser = () => {
+  userLogin = () => {
     const { email, password } = this.state;
-    const userObject = { email, password };
-    console.log("pressed btn");
-    API.loginUser(userObject)
+    const userObj = { email, password };
+    API.userLogin(userObj)
       .then(res => {
         if (res.data.userData) {
-          console.log("login response %O", res.data);
+          console.log("login response: %O", res.data.userData);
           sessionStorage.setItem("user", JSON.stringify(res.data.userData));
           this.setState({ redirectTo: "/profile" })
         }
@@ -48,8 +44,6 @@ class Login extends Component {
   //     .catch(err => console.log(err));
   // };
 
-
-
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
@@ -59,9 +53,7 @@ class Login extends Component {
         <div className="col-md-6 m-auto">
           <div className="card card-body">
             <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>Login</h1>
-            {/* <% include ./partials/messages %> */}
             {/* <form action="/login" method="POST"> */}
-            {/* <form> */}
             <div className="form-group">
               <span>Email</span>
               <input
@@ -83,7 +75,9 @@ class Login extends Component {
                 placeholder="Enter Password"
               />
             </div>
-            <button type="submit" className="btn btn-primary btn-block" onClick={this.loginUser} />
+            <button className="btn btn-success btn-block" onClick={this.userLogin}>
+              <i className="fas fa-book-open"> Submit</i>
+            </button>
             {/* </form> */}
             <p className="lead mt-4">
               No Account? <a href="/register">Register</a>

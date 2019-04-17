@@ -6,15 +6,14 @@ const User = require('../models/user');
 const Controller = require("../controllers/Controller");
 const { ensureAuthenticated } = require('../config/auth');
 
+// // Welcome Page
+// router.get('/', (req, res) => res.redirect('/'));
 
-// Welcome Page
-router.get('/', (req, res) => res.redirect('/'));
+// // Login Page
+// router.get('/login', (req, res) => res.redirect('/login'));
 
-// Login Page
-router.get('/login', (req, res) => res.redirect('/login'));
-
-// Register Page
-router.get('/register', (req, res) => res.redirect('/register'));
+// // Register Page
+// router.get('/register', (req, res) => res.redirect('/register'));
 
 // Register
 router.post('/register', (req, res) => {
@@ -34,14 +33,14 @@ router.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.redirect('/register');
+    res.send(errors);
   }
 
   else {
     User.findOne({ email: email }).then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
-        res.redirect('/register');
+        res.send(errors);
       } else {
         const newUser = new User({
           name,
@@ -60,7 +59,7 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
-                res.redirect('/login');
+                res.send("no register error");
               })
               .catch(err => console.log(err));
           });
@@ -70,22 +69,28 @@ router.post('/register', (req, res) => {
   }
 });
 
-// Logout
-router.post('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
-
-// Login
+// // passport: Login
 router.post('/login', (req, res, next) => {
-  console.log(req.body)
+  // console.log(req.body)
   passport.authenticate('local', {
-    successRedirect: '/getuser',
+    successRedirect: '/logged',
     failureRedirect: '/login',
     failureFlash: true
   })(req, res, next);
 });
 
+// // passport: use req.user instead of using req.body
+router.get('/logged', ensureAuthenticated, (req, res) => {
+  // console.log(req.user)
+  const user = {
+    userData: req.user
+  }
+  res.json(user);
+  // res.redirect('/profile')
+});
+
+
+// // passport: Login
 // router.post('/login',
 //   passport.authenticate('local'),
 //   function (req, res) {
@@ -94,19 +99,16 @@ router.post('/login', (req, res, next) => {
 //     // res.redirect('/profile');
 //   });
 
-// API findUser
-router.route('/findUser/:id')
-  .get(Controller.findUser);
+// // API findUser
+// router.route('/findUser/:id')
+//   .get(Controller.findUser);
 
 
-// // Profile
-router.get('/getuser', ensureAuthenticated, (req, res) => {
-    const user = {
-      userData: req.user
-    }
-  res.json(user);
-  // res.redirect('/customer')
+// // passport: Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.send("passport logged out");
+  // res.redirect('/');
 });
-
 
 module.exports = router;

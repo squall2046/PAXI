@@ -2,6 +2,18 @@ import axios from "axios";
 
 export default {
 
+  userRegister: function (newUserObj) {
+    return axios.post("/register", newUserObj)
+  },
+
+  userLogin: function (userObj) {
+    return axios.post("/login", userObj)
+  },
+  
+  userLogout: function () {
+    return axios.get("/logout")
+  },
+
   createPackBtn: (packInfo) => {
     console.log("reactAPI client req:", "packInfo");
     return axios.post("/api/pack/create", packInfo);
@@ -35,12 +47,8 @@ export default {
   //   return axios.get("/logout");
   // },
 
-  loginUser: function(userObject){
-    return axios.post("/login", userObject)
-  },
-
-  findUser: (id) => {
-    return axios.get("/findUser/" + id);
-  }
+  // findUser: (id) => {
+  //   return axios.get("/findUser/" + id);
+  // }
 
 };

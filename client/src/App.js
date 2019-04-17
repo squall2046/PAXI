@@ -15,11 +15,12 @@ class App extends Component {
   state = {
     user: null
   }
+
   componentDidMount() {
     console.log("session check: ", sessionStorage.getItem("user"))
     const userInfo = sessionStorage.getItem("user");
     if (userInfo) {
-      this.setState({ user: userInfo })
+      this.setState({ user: userInfo }, () => this.render())
     }
   }
 
@@ -31,16 +32,15 @@ class App extends Component {
     )
   }
 
-  loggedInRoutes = () => {
+  loggedInRoutes() {
     return (
       <div>
         <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/logout" component={Login} />
-          <Route path="/profile" component={Profile} />
+          {/* <Route exact path="/" component={Welcome} />
+          <Route exact path="/register" component={Register} /> */}
           {/* <Route path="/profile/:id" component={Profile} /> */}
+          <Route exact path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
           <Route path="/customer" component={Customer} />
           <Route path="/carrier" component={Carrier} />
           <Route path="/status" component={Status} />
@@ -50,7 +50,7 @@ class App extends Component {
     )
   }
 
-  loggedOutRoutes = () => {
+  loggedOutRoutes() {
     return (
       <div>
         <Switch>

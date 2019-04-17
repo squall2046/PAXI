@@ -19,7 +19,7 @@ class Carrier extends Component {
     this.findUnpicked();
   };
 
-  findUnpicked = () => {
+  findUnpicked() {
     API.findUnpicked()
       .then(res => {
         this.setState({ pack: res.data });

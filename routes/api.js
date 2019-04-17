@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Controller = require("../controllers/Controller");
-const { ensureAuthenticated } = require('../config/auth');
 
 // post new pack
 router

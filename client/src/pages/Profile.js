@@ -11,17 +11,6 @@ import "./style.css";
 // console.log(id)
 
 class Profile extends Component {
-
-  // findUser = () => {
-  //   API.findUser(id)
-  //     .then(res => {
-  //       // alert(`welcome ${res.data[0].name}!`);
-  //       this.setState({ user: res.data[0] });
-  //       console.log("state user:", this.state.user);
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-
   state = {
     pack: [],
     carry: [],
@@ -33,7 +22,7 @@ class Profile extends Component {
     // this.findUser();
   };
 
-  findPacks = () => {
+  findPacks() {
     API.findPacks()
       .then(res => {
         this.setState({ pack: res.data });
@@ -41,6 +30,16 @@ class Profile extends Component {
       })
       .catch(err => console.log(err));
   };
+
+  // findUser() {
+  //   API.findUser(id)
+  //     .then(res => {
+  //       // alert(`welcome ${res.data[0].name}!`);
+  //       this.setState({ user: res.data[0] });
+  //       console.log("state user:", this.state.user);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     return (
@@ -53,7 +52,7 @@ class Profile extends Component {
               {this.state.pack.length ? (
                 <List>
                   {this.state.pack
-                  // {this.state.user.pack
+                    // {this.state.user.pack
                     .map(pack => (
                       <ListItem key={pack._id} children={pack}>
                         <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
