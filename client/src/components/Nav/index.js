@@ -1,6 +1,29 @@
 import React from "react";
 import "./style.css";
 
+
+class Logout extends Component {
+
+//   componentDidMount() {
+//     this.logout();
+//   };
+
+//   logout = () => {
+//     API.logout()
+//     .then(console.log("logout"))
+//   };
+
+
+
+//   render() {
+//     return (
+//       <div></div>
+//     )
+//   }
+// }
+
+
+
 function Nav(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
