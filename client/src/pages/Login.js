@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 import { FormBtn } from "../components/Form";
 import "./style.css";
+import { set } from "mongoose";
 
 class Login extends Component {
 
@@ -25,15 +26,10 @@ class Login extends Component {
     console.log("pressed btn");
     API.loginUser(userObject)
       .then(res => {
-        console.log("login response %O", res.data);
-
-        if (res.data === "OK") {
-          console.log("server return OK status, because this username doesn't exist or password was wrong")
-        } else {
-          console.log("email and password matched!");
-          sessionStorage.user = JSON.stringify(res.data.local);
-          this.props.onLogin(res.data.local);
-          this.setState({ redirectTo: "/profile" });
+        if (res.data.userData) {
+          console.log("login response %O", res.data);
+          sessionStorage.setItem("user", JSON.stringify(res.data.userData));
+          this.setState({ redirectTo: "/profile" })
         }
       })
       .catch(err => console.log(err))
@@ -64,31 +60,31 @@ class Login extends Component {
           <div className="card card-body">
             <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>Login</h1>
             {/* <% include ./partials/messages %> */}
-            <form action="/login" method="POST">
-              {/* <form> */}
-              <div className="form-group">
-                <span>Email</span>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
-                  placeholder="Enter Email"
-                />
+            {/* <form action="/login" method="POST"> */}
+            {/* <form> */}
+            <div className="form-group">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                placeholder="Enter Email"
+              />
 
-                <span>Password</span>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  placeholder="Enter Password"
-                />
-              </div>
-              <FormBtn type="submit" className="btn btn-primary btn-block" onClick={this.loginUser} />
-            </form>
+              <span>Password</span>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                placeholder="Enter Password"
+              />
+            </div>
+            <button type="submit" className="btn btn-primary btn-block" onClick={this.loginUser} />
+            {/* </form> */}
             <p className="lead mt-4">
               No Account? <a href="/register">Register</a>
             </p>

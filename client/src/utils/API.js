@@ -35,6 +35,10 @@ export default {
   //   return axios.get("/logout");
   // },
 
+  loginUser: function(userObject){
+    return axios.post("/login", userObject)
+  },
+
   findUser: (id) => {
     return axios.get("/findUser/" + id);
   }

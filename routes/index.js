@@ -80,7 +80,7 @@ router.post('/logout', (req, res) => {
 router.post('/login', (req, res, next) => {
   console.log(req.body)
   passport.authenticate('local', {
-    successRedirect: '/profile',
+    successRedirect: '/getuser',
     failureRedirect: '/login',
     failureFlash: true
   })(req, res, next);
@@ -100,9 +100,11 @@ router.route('/findUser/:id')
 
 
 // // Profile
-router.get('/profile', ensureAuthenticated, (req, res) => {
-  //   const user = req.body;
-  // res.json(user);
+router.get('/getuser', ensureAuthenticated, (req, res) => {
+    const user = {
+      userData: req.user
+    }
+  res.json(user);
   // res.redirect('/customer')
 });
 
