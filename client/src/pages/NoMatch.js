@@ -2,10 +2,21 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import "./style.css";
 
-
 class NoMatch extends Component {
+  // state = {
+  //   reload: false,
+  // };
 
-  // location.reload();
+  // componentWillMount() {
+  //   console.log("session check: ", sessionStorage.getItem("user"))
+  //   const userInfo = sessionStorage.getItem("user");
+  //   if (userInfo) {
+  //     if (!this.state.reload) {
+  //       window.location.reload();
+  //       this.setState({ reload: true })
+  //     }
+  //   }
+  // }
 
   render() {
     return (

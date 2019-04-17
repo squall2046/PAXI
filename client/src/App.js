@@ -15,11 +15,14 @@ class App extends Component {
     user: null
   }
 
-  componentDidMount() {
-    console.log("session check: ", sessionStorage.getItem("user"))
+  // componentDidMount() {
+  componentWillMount() {
+    console.log("React App session check: ", sessionStorage.getItem("user"))
     const userInfo = sessionStorage.getItem("user");
     if (userInfo) {
-      this.setState({ user: userInfo }, () => this.render())
+      this.setState({ user: userInfo },
+        // () => this.render()
+      )
     }
   }
 
@@ -35,15 +38,15 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          {/* <Route exact path="/" component={Welcome} />
-          <Route exact path="/register" component={Register} /> */}
-          {/* <Route path="/profile/:id" component={Profile} /> */}
+          {/* <Route exact path="/" component={Welcome} /> */}
+          {/* <Route exact path="/register" component={Register} /> */}
           <Route exact path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/customer" component={Customer} />
-          <Route path="/carrier" component={Carrier} />
-          <Route path="/status" component={Status} />
-          <Route component={NoMatch} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/customer" component={Customer} />
+          <Route exact path="/carrier" component={Carrier} />
+          <Route exact path="/status" component={Status} />
+          <Route component={Profile} />
+          {/* <Route path="/profile/:id" component={Profile} /> */}
         </Switch>
       </div>
     )

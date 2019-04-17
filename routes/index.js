@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const Controller = require("../controllers/Controller");
 const { ensureAuthenticated } = require('../config/auth');
 
 // // Welcome Page

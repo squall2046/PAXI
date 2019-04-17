@@ -16,7 +16,7 @@ class Nav extends Component {
   userLogout = () => {
     API.userLogout()
       .then(res => {
-        console.log("login response %O", res.data);
+        console.log("(Nav)logout response: %O", res.data);
         sessionStorage.removeItem("user")
         this.setState({ redirectTo: "/login" })
       })
