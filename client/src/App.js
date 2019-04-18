@@ -15,18 +15,20 @@ class App extends Component {
     user: null
   }
 
-  // componentDidMount() {
-  componentWillMount() {
+  componentDidMount() {
+    // componentWillMount() {
     // console.log("React App session check: ", sessionStorage.getItem("user"))
     const userInfo = sessionStorage.getItem("user");
     if (userInfo) {
       this.setState({ user: userInfo },
-        // () => console.log(this.state.user)
+        // () => console.log("React APP state check: ", this.state.user)
+        () => this.render()
       )
     }
   }
 
   render() {
+    if (!this.state.user) { this.componentDidMount() };
     return (
       <Router>
         {this.state.user ? this.loggedInRoutes() : this.loggedOutRoutes()}
@@ -59,6 +61,7 @@ class App extends Component {
           <Route exact path="/" component={Welcome} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={Profile} />
           <Route component={NoMatch} />
         </Switch>
       </div>

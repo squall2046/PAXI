@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Controller = require("../controllers/Controller");
+const Controller = require("../controllers/api-controller");
 
 // post new pack
 router
@@ -22,10 +22,10 @@ router
   .route("/pack/carrier/:userId/:packId")
   .put(Controller.updateCarrier);
 
-// carrier pick a pack
-// router
-//   .route("/pack/pick/:packId")
-//   .put(Controller.updatePackStatus);
+// carrier delivered a pack
+router
+  .route("/pack/delivered/:packId")
+  .put(Controller.updateDelivered);
 
 // carrier find all available packs
 router

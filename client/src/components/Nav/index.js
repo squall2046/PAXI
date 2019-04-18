@@ -34,20 +34,35 @@ class Nav extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a className="navbar-brand text-dark" href="/profile">Paxi</a>
-        <span>Welcome <i>{this.state.user ? this.state.user.name : ""}</i></span>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <a className="nav-item nav-link active text-muted" href="/customer">Send A Package</a>
-            <a className="nav-item nav-link text-muted" href="/carrier">Become Carrier</a>
-            {/* <form action="/logout" method="POST"> */}
-            <button className="btn btn-primary" onClick={this.userLogout} >Logout</button>
-            {/* </form> */}
-          </div>
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">PAXI</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-item nav-link active text-muted" href="/customer">Send A Package</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-item nav-link text-muted" href="/carrier">Become Carrier</a>
+            </li>
+          </ul>
+        </div>
+        <div className="mx-auto order-0">
+          <span className="mr-auto text-light">Welcome </span>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <i className="text-light nav-user align-text-bottom">{this.state.user ? this.state.user.name : ""}</i>
+            </li>
+            <li className="nav-item">
+              <button className="btn btn-primary mr-auto" onClick={this.userLogout}>Logout</button>
+            </li>
+          </ul>
         </div>
       </nav>
     );

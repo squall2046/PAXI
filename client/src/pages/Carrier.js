@@ -44,14 +44,11 @@ class Carrier extends Component {
       // console.log("carrier req userId:", this.state.userId, "\n carrier req packId:", packId)
       API.updateCarrier(this.state.userId, packId)
         .then(res => { console.log(res.data); this.componentDidMount() });
-      // API.updatePackStatus(packId)
-      //   // .then(res => this.findUnpicked())
-      //   .then(res => this.componentDidMount())
+      // .then(res => window.location.replace("/"))
+      // .catch(err => console.log(err));
       // 刷新 mount 中全部内容!!!
     }
   }
-  // .then(res => window.location.replace("/"))
-  // .catch(err => console.log(err));
 
   mapBtnSubmit = packId => {
     API.mapBtnSubmit(packId)

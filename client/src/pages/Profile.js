@@ -4,11 +4,6 @@ import Nav from "../components/Nav";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import "./style.css";
-// import { Link } from "react-router-dom";
-
-
-// let id = window.location.pathname.split("profile/").slice(1);
-// console.log(id)
 
 class Profile extends Component {
   state = {
@@ -35,22 +30,19 @@ class Profile extends Component {
     API.findUserPacks(userId)
       .then(res => {
         // this.setState({ pack: res.data.pack },
-          this.setState({ pack: res.data.pack, carrier: res.data.carrier },
+        this.setState({ pack: res.data.pack, carrier: res.data.carrier },
           () => console.log("profile user: \n packs: ", this.state.pack, "\n carried: ", this.state.carrier)
         )
       })
       .catch(err => console.log(err));
   };
 
-  // findUser() {
-  //   API.findUser(id)
-  //     .then(res => {
-  //       // alert(`welcome ${res.data[0].name}!`);
-  //       this.setState({ user: res.data[0] });
-  //       console.log("state user:", this.state.user);
-  //     })
-  //     .catch(err => console.log(err));
-  // }
+  updateDelivered = packId => {
+    if (prompt("Did you complete the delivery?") === "yes") {
+      API.updateDelivered(packId)
+        .then(res => { console.log(res.data); this.componentDidMount() });
+    }
+  }
 
   render() {
     return (
@@ -93,9 +85,11 @@ class Profile extends Component {
                   {this.state.carrier
                     .map(pack => (
                       <ListItem key={pack._id}>
-                        <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
-                        <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
-                        <div className="status3">carrier: me</div>
+                        {/* <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div> */}
+                        <div className="status">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
+                        {/* <div className="status3">carrier: me</div> */}
+                        <button className="btn btn-info status3" onClick={() => this.updateDelivered(pack._id)} disabled={pack.isDelivered}> Delivered </button>
+
 
                         <h3>{pack.title}</h3>
                         <div>From: {pack.from} - To: {pack.to}</div>
@@ -119,6 +113,19 @@ class Profile extends Component {
       </div>
     );
   }
+
+  // let id = window.location.pathname.split("profile/").slice(1);
+  // console.log(id)
+  // findUser() {
+  //   API.findUser(id)
+  //     .then(res => {
+  //       // alert(`welcome ${res.data[0].name}!`);
+  //       this.setState({ user: res.data[0] });
+  //       console.log("state user:", this.state.user);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
 }
 
 export default Profile;

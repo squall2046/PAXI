@@ -15,22 +15,18 @@ export default {
   },
 
   createPackBtn: (packInfo) => {
-    console.log("reactAPI client req:", "packInfo");
     return axios.post("/api/pack/create", packInfo);
   },
 
   findUserPacks: (userId) => {
-    console.log("reactAPI client req: find all packs");
     return axios.get("/api/pack/find/" + userId);
   },
 
   findAllPacks: () => {
-    console.log("reactAPI client req: find all packs");
     return axios.get("/api/pack/findall");
   },
 
   findUnpicked: () => {
-    console.log("reactAPI client req: find unpicked packs");
     return axios.get("/api/pack/findunpicked");
   },
 
@@ -39,10 +35,20 @@ export default {
     return axios.put(`/api/pack/carrier/${userId}/${packId}`);
   },
 
-  // updatePackStatus: (packId) => {
-  //   console.log("reactAPI client req: carrier picked");
-  //   return axios.put("/api/pack/pick/" + packId);
+  updateDelivered: (packId) => {
+    return axios.put("/api/pack/delivered/" + packId);
+  },
+
+  // findCarrier: (userId) => {
+  //   return axios.get("/api/pack/findcarrier/" + userId);
   // },
+
+  // updateCarrierRate: (userId) => {
+  //   return axios.put("/api/pack/updatecarrierrate/" + userId);
+  // },
+
+
+
 
   // createUserBtn: (userInfo) => {
   //   console.log("reactAPI client req:", "userInfo");
