@@ -13,6 +13,8 @@ const packSchema = new Schema({
   description: { type: String },
   userId: { type: String },
 
+  createdBy: { type: String },
+  carriedBy: { type: String },
   isPicked: { type: Boolean, default: false },
   isDelivered: { type: Boolean, default: false },
   date: { type: Date, default: Date.now },

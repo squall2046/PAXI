@@ -34,24 +34,13 @@ class Profile extends Component {
     const userId = this.state.user._id;
     API.findUserPacks(userId)
       .then(res => {
-        this.setState({ pack: res.data.pack },
-          // this.setState({ pack: res.data.pack, carrier: res.data.carrier },
-          () => console.log("profile user packs and carried: ", this.state.pack, this.state.carrier)
+        // this.setState({ pack: res.data.pack },
+          this.setState({ pack: res.data.pack, carrier: res.data.carrier },
+          () => console.log("profile user: \n packs: ", this.state.pack, "\n carried: ", this.state.carrier)
         )
       })
       .catch(err => console.log(err));
   };
-
-  // findUserPicked() {
-  //   const userId = this.state.user._id;
-  //   API.findUserPacks(userId)
-  //     .then(res => {
-  //       this.setState({ pack: res.data.pack },
-  //         () => console.log("profile user packs: ", this.state.pack)
-  //       )
-  //     })
-  //     .catch(err => console.log(err));
-  // };
 
   // findUser() {
   //   API.findUser(id)
@@ -101,13 +90,12 @@ class Profile extends Component {
               <div className="h3">Carried packages</div>
               {this.state.carrier.length ? (
                 <List>
-                  {/* {this.state.carrier
-                    // {this.state.user.pack
+                  {this.state.carrier
                     .map(pack => (
                       <ListItem >
                         <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
                         <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
-                        <div className="status3">carrier: ???</div>
+                        <div className="status3">carrier: me</div>
 
                         <h3>{pack.title}</h3>
                         <div>From: {pack.from} - To: {pack.to}</div>
@@ -120,7 +108,7 @@ class Profile extends Component {
                         {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : <img className="col-md-3 mx-auto img" alt="pack" src="" />}
                       </ListItem>
                     ))
-                  } */}
+                  }
                 </List>
               ) : (
                   <h3> &nbsp; No carried packages </h3>

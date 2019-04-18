@@ -10,8 +10,8 @@ const userSchema = new Schema({
   dl: { type: String },
   portrait: { type: String },
   date: { type: Date, default: Date.now },
-  pack: [{ type: Schema.Types.ObjectId, ref: "pack" }],
-  carrier: [{ type: Schema.Types.ObjectId, ref: "pack" }]
+  pack: [{ type: Schema.Types.ObjectId, ref: "Pack" }],
+  carrier: [{ type: Schema.Types.ObjectId, ref: "Pack" }]
 });
 
 const User = mongoose.model("User", userSchema);

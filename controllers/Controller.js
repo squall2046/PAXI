@@ -26,11 +26,13 @@ module.exports = {
   findUserPacks: function (req, res) {
     // console.log("userId: ", req.params.userId)
     db.User.findById(req.params.userId)
-      // .populate("pack")
+      .populate("pack")
+      .populate("carrier")
       // why show pack info without populate, and populate make error?
       .sort({ date: -1 })
       .then(dbModel => {
-        console.log("\n find user's packs from mongo", dbModel);
+        console.log("\n find user's packs from mongo: ", dbModel.pack);
+        console.log( "\n find user's carried from mongo: ", dbModel.carrier);
         res.json(dbModel)
       })
       .catch(err => res.status(422).json(err));
