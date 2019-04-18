@@ -21,7 +21,7 @@ class App extends Component {
     const userInfo = sessionStorage.getItem("user");
     if (userInfo) {
       this.setState({ user: userInfo },
-        // () => this.render()
+        // () => console.log(this.state.user)
       )
     }
   }

@@ -14,10 +14,17 @@ class Profile extends Component {
   state = {
     pack: [],
     carry: [],
-    user: ""
+    user: null
   };
 
   componentDidMount() {
+    const userInfo = sessionStorage.getItem("user");
+    const userObj = JSON.parse(userInfo);
+    if (userInfo) {
+      this.setState({ user: userObj },
+        // () => console.log(this.state.user)
+      )
+    };
     this.findPacks();
     // this.findUser();
   };
@@ -44,7 +51,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav/>
         <Container fluid>
           <Row>
             <Col size="md-5">
@@ -67,7 +74,7 @@ class Profile extends Component {
                         <div>Shipping fee: $ {pack.fee}</div>
                         <div>Description: {pack.description}</div>
                         <div>Issue (UTC): {pack.date}</div>
-                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log(" pack w/o image")}
+                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : <img className="col-md-3 mx-auto img" alt="pack" src="" />}
                       </ListItem>
                     ))
                   }
