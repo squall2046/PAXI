@@ -92,7 +92,7 @@ class Profile extends Component {
                 <List>
                   {this.state.carrier
                     .map(pack => (
-                      <ListItem >
+                      <ListItem key={pack._id}>
                         <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
                         <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
                         <div className="status3">carrier: me</div>
