@@ -18,14 +18,14 @@ router
   .get(Controller.findAllPacks);
 
 // carrier pick a pack
-// router
-//   .route("/pack/carrier/:userId/:packId")
-//   .put(Controller.updateCarrier);
+router
+  .route("/pack/carrier/:userId/:packId")
+  .put(Controller.updateCarrier);
 
 // carrier pick a pack
-router
-  .route("/pack/pick/:packId")
-  .put(Controller.updatePackStatus);
+// router
+//   .route("/pack/pick/:packId")
+//   .put(Controller.updatePackStatus);
 
 // carrier find all available packs
 router

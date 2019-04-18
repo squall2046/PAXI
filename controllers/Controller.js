@@ -43,19 +43,26 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  // updateCarrier: function (req, res) {
-  //   // console.log("req.params.packId", req.params.packId)
-  //   // db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
-  //   //   .then(dbModel => res.json(dbModel))
-  //   //   .catch(err => res.status(422).json(err));
-  // },
-
-  updatePackStatus: function (req, res) {
-    console.log("req.params.packId", req.params.packId)
+  updateCarrier: function (req, res) {
+    // console.log("\n req.params.userId:", req.params.userId, "\n req.params.packId:", req.params.packId);
     db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
+      .then(dbModel => {
+        // console.log("\n pack status changed: ", req.params.userId, req.params.packId, "\n");
+        return db.User.findOneAndUpdate({ _id: req.params.userId }, { $push: { carrier: req.params.packId } }, { new: true });
+      })
       .then(dbModel => res.json(dbModel))
+      // .then(user => {
+      //   res.redirect('/profile');
+      // })
       .catch(err => res.status(422).json(err));
   },
+
+  // updatePackStatus: function (req, res) {
+  //   console.log("req.params.packId", req.params.packId)
+  //   db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
 
   findUnpicked: function (req, res) {
     db.Pack.find({ isPicked: false })

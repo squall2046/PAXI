@@ -34,15 +34,15 @@ export default {
     return axios.get("/api/pack/findunpicked");
   },
 
-  // updateCarrier: (userId, packId) => {
-  //   console.log("reactAPI client req: carrier picked");
-  //   return axios.put(`/api/pack/carrier/${userId}/${packId}`);
-  // },
-
-  updatePackStatus: (packId) => {
-    console.log("reactAPI client req: carrier picked");
-    return axios.put("/api/pack/pick/" + packId);
+  updateCarrier: (userId, packId) => {
+    // console.log("reactAPI client req: carrier picked", userId, packId);
+    return axios.put(`/api/pack/carrier/${userId}/${packId}`);
   },
+
+  // updatePackStatus: (packId) => {
+  //   console.log("reactAPI client req: carrier picked");
+  //   return axios.put("/api/pack/pick/" + packId);
+  // },
 
   // createUserBtn: (userInfo) => {
   //   console.log("reactAPI client req:", "userInfo");

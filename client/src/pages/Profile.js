@@ -25,7 +25,6 @@ class Profile extends Component {
         () => {
           console.log("profile userObj: ", this.state.user);
           this.findUserPacks();
-          // this.findUser();
         }
       )
     };

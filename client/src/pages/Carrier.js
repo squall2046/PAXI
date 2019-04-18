@@ -41,11 +41,12 @@ class Carrier extends Component {
 
   pickBtnSubmit = packId => {
     if (prompt("Do you want to carry this pack? Input 'yes' or 'no'") === "yes") {
-      // API.updateCarrier(this.state.userId, this.state.pack._id)
-      //   .then(res => this.componentDidMount());
-      API.updatePackStatus(packId)
-        // .then(res => this.findUnpicked())
-        .then(res => this.componentDidMount())
+      // console.log("carrier req userId:", this.state.userId, "\n carrier req packId:", packId)
+      API.updateCarrier(this.state.userId, packId)
+        .then(res => { console.log(res.data); this.componentDidMount() });
+      // API.updatePackStatus(packId)
+      //   // .then(res => this.findUnpicked())
+      //   .then(res => this.componentDidMount())
       // 刷新 mount 中全部内容!!!
     }
   }
