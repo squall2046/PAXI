@@ -22,18 +22,22 @@ class Profile extends Component {
     const userObj = JSON.parse(userInfo);
     if (userInfo) {
       this.setState({ user: userObj },
-        // () => console.log(this.state.user)
+        () => {
+          console.log("profile userObj: ", this.state.user);
+          this.findUserPacks();
+          // this.findUser();
+        }
       )
     };
-    this.findPacks();
-    // this.findUser();
   };
 
-  findPacks() {
-    API.findPacks()
+  findUserPacks() {
+    const userId = this.state.user._id;
+    API.findUserPacks(userId)
       .then(res => {
-        this.setState({ pack: res.data });
-        // console.log(this.state.pack)
+        this.setState({ pack: res.data.pack },
+          () => console.log("profile user packs: ", this.state.pack)
+        )
       })
       .catch(err => console.log(err));
   };
@@ -51,7 +55,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Nav/>
+        <Nav />
         <Container fluid>
           <Row>
             <Col size="md-5">
@@ -61,7 +65,7 @@ class Profile extends Component {
                   {this.state.pack
                     // {this.state.user.pack
                     .map(pack => (
-                      <ListItem key={pack._id} children={pack}>
+                      <ListItem key={pack._id}>
                         <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
                         <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
                         <div className="status3">carrier: ???</div>

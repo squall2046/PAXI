@@ -13,15 +13,27 @@ class Customer extends Component {
     to: "",
     size: "",
     weight: "",
-    image: "",
-    Description: "",
     receiver: "",
     fee: "",
+    image: "",
+    description: "",
+    userId: null
   };
 
   componentDidMount() {
-    // this.loadPacks();
-  }
+    const userInfo = sessionStorage.getItem("user");
+    const userObj = JSON.parse(userInfo);
+    if (userInfo) {
+      this.setState({ userId: userObj._id },
+        () => {
+          console.log("customer userId: ", this.state.userId);
+          //   this.findPacks();
+          //   // this.findUser();
+        }
+      )
+    };
+  };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -31,10 +43,11 @@ class Customer extends Component {
   };
 
   createPackBtn = () => {
-    // console.log(this.state)
     API.createPackBtn(this.state)
-      .then(res => alert(`Your ${res.data.title} has posted!`))
-      .then(res => window.location.replace("/profile"))
+      .then(res => console.log("response to customer: ", res.data))
+      // .then(res => alert(`Your ${res.data.title} has posted!`))
+      .then(res => alert(`Your pack has posted!`))
+      .then(res => window.location.replace("/carrier"))
       .catch(err => console.log(err));
   }
 
@@ -54,7 +67,7 @@ class Customer extends Component {
                     name="title"
                     value={this.state.title}
                     onChange={this.handleInputChange}
-                    placeholder="Javascript Books"
+                    placeholder="Enter your pack name"
                   />
 
                   <span>pack Size (required)</span>
@@ -62,7 +75,7 @@ class Customer extends Component {
                     name="size"
                     value={this.state.size}
                     onChange={this.handleInputChange}
-                    placeholder="45x70"
+                    placeholder="inch x inch"
                   />
 
                   <span>pack weight (required)</span>
@@ -70,7 +83,7 @@ class Customer extends Component {
                     name="weight"
                     value={this.state.weight}
                     onChange={this.handleInputChange}
-                    placeholder="5lbs"
+                    placeholder="lbs"
                   />
 
                   <span>From (required)</span>
@@ -78,7 +91,7 @@ class Customer extends Component {
                     name="from"
                     value={this.state.from}
                     onChange={this.handleInputChange}
-                    placeholder="100 W.Broad St, Glen Allen, VA 23233"
+                    placeholder="street(apt#), city, state, zip"
                   />
 
                   <span>To (required)</span>
@@ -86,7 +99,7 @@ class Customer extends Component {
                     name="to"
                     value={this.state.to}
                     onChange={this.handleInputChange}
-                    placeholder="212 District Ave 400, Fairfax, VA 22033"
+                    placeholder="street(apt#), city, state, zip"
                   />
 
                   <span>Receiver (required)</span>
@@ -94,7 +107,7 @@ class Customer extends Component {
                     name="receiver"
                     value={this.state.receiver}
                     onChange={this.handleInputChange}
-                    placeholder="George W"
+                    placeholder="receiver's full name"
                   />
 
                   <div>Shipping Fee (required)</div>
@@ -102,7 +115,7 @@ class Customer extends Component {
                     name="fee"
                     value={this.state.fee}
                     onChange={this.handleInputChange}
-                    placeholder="$ 10.00"
+                    placeholder="USD$"
                   />
 
                   <div>Image Link (optional)</div>
@@ -110,7 +123,15 @@ class Customer extends Component {
                     name="image"
                     value={this.state.image}
                     onChange={this.handleInputChange}
-                    placeholder="https://theverticalview.files.wordpress.com/2012/11/brown-paper-package.png"
+                    placeholder="image link"
+                  />
+
+                  <div>Description (optional)</div>
+                  <Input
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.handleInputChange}
+                    placeholder="Description"
                   />
 
                   <FormBtn

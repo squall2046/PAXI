@@ -14,7 +14,7 @@ class Nav extends Component {
     const userObj = JSON.parse(userInfo);
     if (userInfo) {
       this.setState({ user: userObj },
-        () => console.log(this.state.user.name)
+        () => console.log("Nav welcome user: ", this.state.user.name)
       )
     };
   };

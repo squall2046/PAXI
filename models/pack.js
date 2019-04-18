@@ -9,8 +9,9 @@ const packSchema = new Schema({
   weight: { type: String, required: true },
   receiver: { type: String, required: true },
   fee: { type: String, required: true },
-  description: { type: String },
   image: { type: String },
+  description: { type: String },
+  userId: { type: String },
 
   isPicked: { type: Boolean, default: false },
   isDelivered: { type: Boolean, default: false },

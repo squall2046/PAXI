@@ -17,7 +17,7 @@ class App extends Component {
 
   // componentDidMount() {
   componentWillMount() {
-    console.log("React App session check: ", sessionStorage.getItem("user"))
+    // console.log("React App session check: ", sessionStorage.getItem("user"))
     const userInfo = sessionStorage.getItem("user");
     if (userInfo) {
       this.setState({ user: userInfo },

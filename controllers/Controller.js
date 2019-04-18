@@ -8,20 +8,49 @@ const db = require("../models/index");
 module.exports = {
 
   createPack: function (req, res) {
-    console.log(req.body)
+    // console.log("\n create pack from: ", req.body)
     db.Pack.create(req.body)
-      .then(dbModel => { res.json(dbModel) })
+      .then(dbModel => {
+        console.log("\n created new pack: ", dbModel, "\n");
+        console.log("===== new pack id: ", dbModel._id);
+        console.log("===== new pack belong to user: ", dbModel.userId);
+        return db.User.findOneAndUpdate({ _id: dbModel.userId }, { $push: { pack: dbModel._id } }, { new: true });
+      })
+      .then(dbUser => {
+        console.log("\n response the user info: ", dbUser);
+        res.json(dbUser);
+      })
       .catch(err => res.status(422).json(err));
   },
 
-  findPacks: function (req, res) {
+  findUserPacks: function (req, res) {
+    // console.log("userId: ", req.params.userId)
+    db.User.findById(req.params.userId)
+      // .populate("pack")
+      // why show pack info without populate, and populate make error?
+      .sort({ date: -1 })
+      .then(dbModel => {
+        console.log("\n find user's packs from mongo", dbModel);
+        res.json(dbModel)
+      })
+      .catch(err => res.status(422).json(err));
+  },
+
+  findAllPacks: function (req, res) {
     db.Pack.find()
       .sort({ date: -1 })
       .then(dbModel => { res.json(dbModel); console.log("find all from mongo", "dbModel") })
       .catch(err => res.status(422).json(err));
   },
 
-  updatePack: function (req, res) {
+  // updateCarrier: function (req, res) {
+  //   // console.log("req.params.packId", req.params.packId)
+  //   // db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
+  //   //   .then(dbModel => res.json(dbModel))
+  //   //   .catch(err => res.status(422).json(err));
+  // },
+
+  updatePackStatus: function (req, res) {
     console.log("req.params.packId", req.params.packId)
     db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
       .then(dbModel => res.json(dbModel))

@@ -13,9 +13,20 @@ class Carrier extends Component {
   state = {
     pack: [],
     carry: [],
+    userId: null
   };
 
   componentDidMount() {
+    const userInfo = sessionStorage.getItem("user");
+    const userObj = JSON.parse(userInfo);
+    if (userInfo) {
+      this.setState({ userId: userObj._id },
+        () => {
+          console.log("carrier userId: ", this.state.userId);
+        }
+      )
+    };
+
     this.findUnpicked();
   };
 
@@ -23,15 +34,19 @@ class Carrier extends Component {
     API.findUnpicked()
       .then(res => {
         this.setState({ pack: res.data });
-        console.log(this.state.pack)
+        console.log("Carrier find unpicked: ", this.state.pack)
       })
       .catch(err => console.log(err));
   };
 
   pickBtnSubmit = packId => {
     if (prompt("Do you want to carry this pack? Input 'yes' or 'no'") === "yes") {
-      API.updateStatus(packId)
+      // API.updateCarrier(this.state.userId, this.state.pack._id)
+      //   .then(res => this.componentDidMount());
+      API.updatePackStatus(packId)
+        // .then(res => this.findUnpicked())
         .then(res => this.componentDidMount())
+      // 刷新 mount 中全部内容!!!
     }
   }
   // .then(res => window.location.replace("/"))
@@ -66,7 +81,7 @@ class Carrier extends Component {
                         <div>Shipping fee: $ {pack.fee}</div>
                         <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
                         <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
-                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log(" pack w/o image")}
+                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : <img className="col-md-3 mx-auto img" alt="pack" src="" />}
                         <div>Description: {pack.description}</div>
                       </ListItem>
                     ))
