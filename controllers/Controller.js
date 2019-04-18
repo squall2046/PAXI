@@ -46,6 +46,14 @@ module.exports = {
   updateCarrier: function (req, res) {
     // console.log("\n req.params.userId:", req.params.userId, "\n req.params.packId:", req.params.packId);
     db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
+      // .then(dbModel => {
+      //   //   console.log("\n ========: ", dbModel, "\n");
+      //   const { title, from, to, size, weight, receiver, fee, image, description } = dbModel;
+      //   const packIn = { title, from, to, size, weight, receiver, fee, image, description };
+      //   const packId = dbModel._id;
+      //   db.Carrier.collection.insertMany(packIn,packId)
+      //   //   return db.Carrier.create(dbModel);
+      // })
       .then(dbModel => {
         // console.log("\n pack status changed: ", req.params.userId, req.params.packId, "\n");
         return db.User.findOneAndUpdate({ _id: req.params.userId }, { $push: { carrier: req.params.packId } }, { new: true });
