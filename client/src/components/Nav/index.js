@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import API from "../../utils/API";
 import "./style.css";
 
@@ -38,13 +38,13 @@ class Nav extends Component {
         <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">PAXI</a>
+            <Link to="/profile" className="nav-link">PAXI</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-item nav-link active text-muted" href="/customer">Send A Package</a>
+              <Link to="/customer" className="nav-item nav-link active text-muted">Send A Package</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-item nav-link text-muted" href="/carrier">Become Carrier</a>
+              <Link to="/carrier" className="nav-item nav-link text-muted">Become Carrier</Link>
             </li>
           </ul>
         </div>
