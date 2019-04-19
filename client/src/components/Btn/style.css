@@ -1,0 +1,15 @@
+.map-btn {
+  position: absolute;
+  float: right;
+  color: rgb(255, 255, 255);
+  right: 20px;
+  top: 20px
+}
+
+.pick-btn {
+  position: absolute;
+  float: right;
+  color: white;
+  right:10px;
+  bottom:10px
+}

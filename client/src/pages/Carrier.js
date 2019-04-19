@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import PickBtn from "../components/PickBtn";
-import MapBtn from "../components/MapBtn";
+import { MapBtn, PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import "./style.css";
