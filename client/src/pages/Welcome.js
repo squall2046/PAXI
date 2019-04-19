@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import "./style.css";
 
 class Welcome extends Component {
@@ -10,8 +12,8 @@ class Welcome extends Component {
           <div className="card card-body text-center">
             <h1><i className="fab fa-node-js fa-3x"></i></h1>
             <p>Create an account or login</p>
-            <a href="/register" className="btn btn-primary btn-block mb-2">Register</a>
-            <a href="/login" className="btn btn-secondary btn-block">Login</a>
+            <Link to="/register" className="btn btn-primary btn-block mb-2">Register</Link>
+            <Link to="/login" className="btn btn-secondary btn-block">Login</Link>
           </div>
         </div>
       </div>
