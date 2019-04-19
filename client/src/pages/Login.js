@@ -20,6 +20,7 @@ class Login extends Component {
   userLogin = () => {
     const { email, password } = this.state;
     const userObj = { email, password };
+    console.log("clicked login button")
     API.userLogin(userObj)
       .then(res => {
         if (res.data.userData) {

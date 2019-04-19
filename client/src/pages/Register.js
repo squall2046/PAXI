@@ -29,7 +29,7 @@ class Register extends Component {
     const newUserObj = { name, email, password, password2 };
     API.userRegister(newUserObj)
       .then(res => {
-        console.log("login response: %O", res.data);
+        console.log("Response to React:" , res.data);
         if (res.data[0].msg) {
           this.setState({ errors: res.data })
         };
