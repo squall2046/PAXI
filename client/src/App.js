@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -65,7 +65,8 @@ class App extends Component {
           <Route exact path="/customer" component={Customer} />
           <Route exact path="/carrier" component={Carrier} />
           <Route exact path="/status" component={Status} />
-          <Route component={NoMatch} />
+          {/* <Route component={NoMatch} /> */}
+          <Redirect to={{pathname: '/'}}/>
         </Switch>
       </div>
     )
