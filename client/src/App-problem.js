@@ -22,23 +22,33 @@ class App extends Component {
     if (userInfo) {
       this.setState({ user: userInfo },
         // () => console.log("React APP state check: ", this.state.user)
-        () => this.render()
+        // () => this.render()
+        () => { this.loggedInRoutes() }
+      )
+    }
+    else { this.loggedOutRoutes() }
+  }
+
+  render() {
+    if (this.state.user) {
+      return (
+        <div>
+          {this.loggedInRoutes()}
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          {this.loggedOutRoutes()}
+        </div>
       )
     }
   }
 
-  render() {
-    // if (!this.state.user) { this.componentDidMount() };
-    return (
-      <Router>
-        {this.state.user ? this.loggedInRoutes() : this.loggedOutRoutes()}
-      </Router>
-    )
-  }
-
   loggedInRoutes() {
     return (
-      <div>
+      <Router>
         <Switch>
           {/* <Route exact path="/" component={Welcome} /> */}
           {/* <Route exact path="/register" component={Register} /> */}
@@ -50,24 +60,24 @@ class App extends Component {
           <Route component={Profile} />
           {/* <Route path="/profile/:id" component={Profile} /> */}
         </Switch>
-      </div>
+      </Router>
     )
   }
 
   loggedOutRoutes() {
     return (
-      <div>
+      <Router>
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/customer" component={Customer} />
-          <Route exact path="/carrier" component={Carrier} />
-          <Route exact path="/status" component={Status} />
+          {/* <Route exact path="/profile" component={Profile} /> */}
+          {/* <Route exact path="/customer" component={Customer} /> */}
+          {/* <Route exact path="/carrier" component={Carrier} /> */}
+          {/* <Route exact path="/status" component={Status} /> */}
           <Route component={NoMatch} />
         </Switch>
-      </div>
+      </Router>
     )
   }
 }

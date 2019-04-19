@@ -47,6 +47,7 @@ class Login extends Component {
   // };
 
   render() {
+    // if (sessionStorage.getItem("user")) {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
