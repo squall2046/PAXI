@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const morgan = require("morgan");
+const path = require('path');
 const app = express();
 
 const passport = require('passport');
@@ -15,8 +16,9 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-
-
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
 }
 
 //log every request to the console
@@ -54,10 +56,7 @@ app.use(flash());
 // // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/api', require('./routes/api.js'));
-// const path = require('path');
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-// });
+
 // Start the API server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, function () {
