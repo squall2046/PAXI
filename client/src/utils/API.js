@@ -7,6 +7,7 @@ export default {
   },
 
   userLogin: function (userObj) {
+    console.log("login request api")
     return axios.post("/login", userObj)
   },
 
