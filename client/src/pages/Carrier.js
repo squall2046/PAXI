@@ -4,6 +4,7 @@ import Nav from "../components/Nav";
 import { MapBtn, PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import { Form, Input, FormBtn } from "../components/Form";
 import "./style.css";
 // import { Link } from "react-router-dom";
 // import { relative } from "path";
@@ -12,7 +13,9 @@ class Carrier extends Component {
   state = {
     pack: [],
     carry: [],
-    userId: null
+    userId: null,
+    mapBtnA: null,
+    mapBtnB: null
   };
 
   componentDidMount() {
@@ -28,6 +31,15 @@ class Carrier extends Component {
 
     this.findUnpicked();
   };
+
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
 
   findUnpicked() {
     API.findUnpicked()
@@ -51,6 +63,12 @@ class Carrier extends Component {
 
   mapBtnSubmit = packId => {
     API.mapBtnSubmit(packId)
+    // .then(res => this.loadBooks())
+    // .catch(err => console.log(err));
+  }
+
+  searchMap() {
+    // API.mapBtnSubmit(packId)
     // .then(res => this.loadBooks())
     // .catch(err => console.log(err));
   }
@@ -88,6 +106,36 @@ class Carrier extends Component {
               ) : (
                   <h3> &nbsp; No shipping packages </h3>
                 )}
+            </Col>
+            <Col size="md-6">
+              <Form>
+                <h5></h5>
+                <span>Search Start City</span>
+                <Input
+                  name="start"
+                  value={this.state.mapBtnA}
+                  onChange={this.handleInputChange}
+                  placeholder="Start"
+                />
+
+                <span>Search Destination</span>
+                <Input
+                  name="end"
+                  value={this.state.mapBtnB}
+                  onChange={this.handleInputChange}
+                  placeholder="End"
+                />
+
+                <FormBtn
+                  onClick={this.searchMap}
+                />
+              </Form>
+              <div className="googleMap">
+                {/* // // // // // // // //  */}
+                {/* // // // // // // // //  */}
+                {/* // // // // // // // //  */}
+                {/* // // // // // // // //  */}
+              </div>
             </Col>
           </Row>
         </Container>

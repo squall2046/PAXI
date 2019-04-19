@@ -75,3 +75,11 @@
   right:10px;
   bottom:10px
 }
+
+.googleMap {
+  position: fixed;
+  border: 1px solid;
+  width:50%;
+  height: 50%;
+  background: rgb(211, 126, 126, .5)
+}

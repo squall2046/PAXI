@@ -19,8 +19,8 @@ export function Input(props) {
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ marginBottom: 10 }}  type="submit" className="btn btn-success">
-      <i className="fas fa-book-open"> Submit</i>
+    <button {...props} style={{ marginBottom: 10 }}  type="submit" className="btn btn-danger">
+      <i class="fas fa-shipping-fast"> Submit</i>
     </button>
   );
 }
