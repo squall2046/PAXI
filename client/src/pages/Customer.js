@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 import Results from "../components/Results";
 import Nav from "../components/Nav";
@@ -17,7 +18,8 @@ class Customer extends Component {
     fee: "",
     image: "",
     description: "",
-    userId: null
+    userId: null,
+    redirectTo: null
   };
 
   componentDidMount() {
@@ -47,14 +49,19 @@ class Customer extends Component {
       .then(res => console.log("response to customer: ", res.data))
       // .then(res => alert(`Your ${res.data.title} has posted!`))
       .then(res => alert(`Your pack has posted!`))
-      .then(res => window.location.replace("/carrier"))
+      .then(res => this.setState({ redirectTo: "/carrier" }))
+      // .then(res => window.location.replace("/carrier"))
       .catch(err => console.log(err));
   }
 
   render() {
+    // if (this.state.redirectTo) {
+    //   return <Redirect to={{ pathname: this.state.redirectTo }} />
+    // }
     return (
       <div>
         <Nav />
+        {this.state.redirectTo ? <Redirect to={{ pathname: this.state.redirectTo }} /> : console.log("no redirect")}
         <Container fluid>
           <Row>
             <Col size="md-12">
