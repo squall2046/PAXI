@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   render() {
-    if (!this.state.user) { this.componentDidMount() };
+    // if (!this.state.user) { this.componentDidMount() };
     return (
       <Router>
         {this.state.user ? this.loggedInRoutes() : this.loggedOutRoutes()}

@@ -15,6 +15,11 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
 }
 
 //log every request to the console
@@ -44,14 +49,6 @@ app.use(passport.session());
 
 // Connect flash
 app.use(flash());
-// Global variables
-app.use(function (req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
-});
-
 
 // Express Routes
 // const routes = require("./routes");
