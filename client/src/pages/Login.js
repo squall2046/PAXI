@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+
 import API from "../utils/API";
 import "./style.css";
 
@@ -81,7 +82,7 @@ class Login extends Component {
             </button>
             {/* </form> */}
             <p className="lead mt-4">
-              No Account? <a href="/register">Register</a>
+              No Account? <Link to="/register">Register</Link>
             </p>
           </div>
         </div>

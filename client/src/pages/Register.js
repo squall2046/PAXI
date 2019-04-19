@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import API from "../utils/API";
 import "./style.css";
 
@@ -144,7 +144,7 @@ class Register extends Component {
   //             />
   //           </form>
 
-  //           <p className="lead mt-4">Have An Account? <a href="/login">Login</a></p>
+  //           <p className="lead mt-4">Have An Account? <Link to="/login">Login</Link></p>
   //         </div>
   //       </div>
   //     </div>
@@ -225,7 +225,7 @@ class Register extends Component {
               <i className="fas fa-book-open"> Submit</i>
             </button>
             {/* </form> */}
-            <p className="lead mt-4">Have An Account? <a href="/login">Login</a></p>
+            <p className="lead mt-4">Have An Account? <Link to="/login">Login</Link></p>
           </div>
         </div>
       </div>

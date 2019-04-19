@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import "./style.css";
 
@@ -33,7 +34,7 @@ class NoMatch extends Component {
               <br />
               <br />
               <br />
-              <a className="btn btn-dark" href="/">Go back</a>
+              <Link to="/" className="btn btn-dark">Go back</Link>
             </div>
           </Col>
         </Row>
