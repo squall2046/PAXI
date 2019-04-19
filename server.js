@@ -31,7 +31,6 @@ mongoose.connect(mongoURL, { useNewUrlParser: true })
 
 // Passport Config
 require('./config/passport')(passport);
-require('./config/auth');
 
 // Express session
 app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
