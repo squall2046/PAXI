@@ -2,8 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const morgan = require("morgan");
-const path = require('path');
 const app = express();
+const path = require('path');
 
 const passport = require('passport');
 const session = require('express-session');
@@ -12,17 +12,11 @@ const flash = require('connect-flash');
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(express.static("client/public"));
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
 }
-
-//log every request to the console
-app.use(morgan("dev"));
 
 // Connect to the Mongo DB
 const mongoURL = process.env.MONGODB_URI || "mongodb://localhost/paxiDB"
@@ -35,9 +29,9 @@ mongoose.connect(mongoURL, { useNewUrlParser: true })
   });
 
 
-
 // Passport Config
 require('./config/passport')(passport);
+require('./config/auth');
 
 // Express session
 app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
@@ -49,13 +43,18 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
+//log every request to the console
+app.use(morgan("dev"));
+
 // Express Routes
 // const routes = require("./routes");
 // app.use(routes);
-
-// // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/api', require('./routes/api.js'));
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+// });
 
 // Start the API server
 const PORT = process.env.PORT || 3001;

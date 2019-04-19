@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { ensureAuthenticated } = require('../config/auth');
+// const { ensureAuthenticated } = require('../config/auth');
 
 // // Welcome Page
 // router.get('/', (req, res) => res.redirect('/'));
@@ -88,6 +88,12 @@ router.get('/logged', ensureAuthenticated, (req, res) => {
   // res.redirect('/profile')
 });
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.json(req.user);
+}
 
 // // passport: Login
 // router.post('/login',
