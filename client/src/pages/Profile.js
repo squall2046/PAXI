@@ -50,69 +50,71 @@ class Profile extends Component {
       <div>
         <Nav />
         <Container fluid>
-          <Row>
-            <Col size="md-5">
-              <div className="h3">Shipped packages</div>
-              {this.state.pack.length ? (
-                <List>
-                  {this.state.pack
-                    .map(pack => (
-                      <ListItem key={pack._id}>
-                        <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
-                        <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
-                        <div className="status3">carrier: ???</div>
+          <div className="proContainer">
+            <Row>
+              <Col size="md-6">
+                <div className="h3">Shipped packages</div>
+                {this.state.pack.length ? (
+                  <List>
+                    {this.state.pack
+                      .map(pack => (
+                        <ListItem key={pack._id}>
+                          <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
+                          <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
+                          <div className="status3">carrier: ???</div>
 
-                        <h3>{pack.title}</h3>
-                        <div>From: {pack.from} - To: {pack.to}</div>
-                        <div>Receiver: {pack.receiver}</div>
-                        <div>Package size: {pack.size}</div>
-                        <div>Package weight: {pack.weight}</div>
-                        <div>Shipping fee: $ {pack.fee}</div>
-                        <div>Description: {pack.description}</div>
-                        <div>Issue (UTC): {pack.date}</div>
-                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log("no image")}
-                      </ListItem>
-                    ))
-                  }
-                </List>
-              ) : (
-                  <h3> &nbsp; No shipping packages </h3>
-                )}
-            </Col>
-            <Col size="md-5">
-              <div className="h3">Carried packages</div>
-              {this.state.carrier.length ? (
-                <List>
-                  {this.state.carrier
-                    .map(pack => (
-                      <ListItem key={pack._id}>
-                        {/* <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div> */}
-                        {/* <div className="status">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div> */}
-                        {/* <div className="status3">carrier: me</div> */}
-                        <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
-                        <button onClick={() => this.updateDelivered(pack._id)} className={pack.isDelivered ? "btn btn-secondary text-light fadeBtn" : "btn btn-success text-light fadeBtn"} disabled={pack.isDelivered}>
-                          {pack.isDelivered ? <span> Delivered </span> : <span>Confirm Delivery</span>}
-                        </button>
+                          <h3>{pack.title}</h3>
+                          <div>From: {pack.from} - To: {pack.to}</div>
+                          <div>Receiver: {pack.receiver}</div>
+                          <div>Package size: {pack.size}</div>
+                          <div>Package weight: {pack.weight}</div>
+                          <div>Shipping fee: $ {pack.fee}</div>
+                          <div>Description: {pack.description}</div>
+                          <div>Issue (UTC): {pack.date}</div>
+                          {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log("no image")}
+                        </ListItem>
+                      ))
+                    }
+                  </List>
+                ) : (
+                    <h3> &nbsp; No shipping packages </h3>
+                  )}
+              </Col>
+              <Col size="md-6">
+                <div className="h3">Carried packages</div>
+                {this.state.carrier.length ? (
+                  <List>
+                    {this.state.carrier
+                      .map(pack => (
+                        <ListItem key={pack._id}>
+                          {/* <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div> */}
+                          {/* <div className="status">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div> */}
+                          {/* <div className="status3">carrier: me</div> */}
+                          <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
+                          <button onClick={() => this.updateDelivered(pack._id)} className={pack.isDelivered ? "btn btn-secondary text-light fadeBtn" : "btn btn-success text-light fadeBtn"} disabled={pack.isDelivered}>
+                            {pack.isDelivered ? <span> Delivered </span> : <span>Confirm Delivery</span>}
+                          </button>
 
 
-                        <h3>{pack.title}</h3>
-                        <div>From: {pack.from} - To: {pack.to}</div>
-                        <div>Receiver: {pack.receiver}</div>
-                        <div>Package size: {pack.size}</div>
-                        <div>Package weight: {pack.weight}</div>
-                        <div>Shipping fee: $ {pack.fee}</div>
-                        <div>Description: {pack.description}</div>
-                        <div>Issue (UTC): {pack.date}</div>
-                        {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : <img className="col-md-3 mx-auto img" alt="pack" src="" />}
-                      </ListItem>
-                    ))
-                  }
-                </List>
-              ) : (
-                  <h3> &nbsp; No carried packages </h3>
-                )}
-            </Col>
-          </Row>
+                          <h3>{pack.title}</h3>
+                          <div>From: {pack.from} - To: {pack.to}</div>
+                          <div>Receiver: {pack.receiver}</div>
+                          <div>Package size: {pack.size}</div>
+                          <div>Package weight: {pack.weight}</div>
+                          <div>Shipping fee: $ {pack.fee}</div>
+                          <div>Description: {pack.description}</div>
+                          <div>Issue (UTC): {pack.date}</div>
+                          {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : <img className="col-md-3 mx-auto img" alt="pack" src="" />}
+                        </ListItem>
+                      ))
+                    }
+                  </List>
+                ) : (
+                    <h3> &nbsp; No carried packages </h3>
+                  )}
+              </Col>
+            </Row>
+          </div>
         </Container>
       </div>
     );
