@@ -97,7 +97,7 @@ class Profile extends Component {
                           </button>
 
 
-                          <h3>{pack.title}</h3>
+                          <h4>{pack.title}</h4>
                           <div>From: {pack.from} - To: {pack.to}</div>
                           <div>Receiver: {pack.receiver}</div>
                           <div>Package size: {pack.size}</div>
