@@ -14,3 +14,61 @@
 .nav-user {
     margin: 10px;
 }
+
+.navLink {
+ font-size: 90%
+}
+
+h3 {
+    position: absolute;
+    top: 5px;
+    right: 70px;
+    margin: 0
+}
+
+.pulse {
+    position: absolute;
+    display: block;
+    top:25px;
+    right:95px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    font-size: 70%;
+    padding:0 5px 15px;
+    cursor: pointer;
+    box-shadow: 0 0 0 red;
+    animation: pulse .7s infinite;
+    z-index: 99;
+  }
+  .pulse:hover {
+    animation: none;
+  }
+  
+  @-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 red;
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 red;
+      box-shadow: 0 0 0 0 red;
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+  }

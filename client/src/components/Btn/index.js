@@ -12,6 +12,14 @@ export function MapBtn(props) {
   );
 }
 
+export function MsgBtn(props) {
+  return (
+    <span className="btn btn-info msg-btn" {...props} role="button" tabIndex="0">
+     <span> Send Msg </span>
+    </span>
+  );
+}
+
 export function PickBtn(props) {
   return (
     <span className="btn btn-success pick-btn" {...props} role="button" tabIndex="0">

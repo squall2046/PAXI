@@ -19,7 +19,8 @@ class Customer extends Component {
     image: "",
     description: "",
     userId: null,
-    redirectTo: null
+    redirectTo: null,
+    msg: [1,2,3]
   };
 
   componentDidMount() {
@@ -60,7 +61,7 @@ class Customer extends Component {
     // }
     return (
       <div>
-        <Nav />
+        <Nav msg={this.state.msg} />
         {this.state.redirectTo ? <Redirect to={{ pathname: this.state.redirectTo }} /> : console.log("no redirect")}
         <Container fluid>
           <div className="proContainer">

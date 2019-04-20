@@ -6,10 +6,18 @@
   top: 20px
 }
 
+.msg-btn {
+  position: absolute;
+  float: right;
+  color: white;
+  right: 100px;
+  bottom: 10px
+}
+
 .pick-btn {
   position: absolute;
   float: right;
   color: white;
-  right:10px;
-  bottom:10px
+  right: 15px;
+  bottom: 10px
 }

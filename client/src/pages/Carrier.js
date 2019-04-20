@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import { MapBtn, PickBtn } from "../components/Btn";
+import { MapBtn, MsgBtn, PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Form, Input, FormBtn } from "../components/Form";
@@ -15,7 +15,8 @@ class Carrier extends Component {
     carry: [],
     userId: null,
     mapBtnA: null,
-    mapBtnB: null
+    mapBtnB: null,
+    msg: [1,2,3]
   };
 
   componentDidMount() {
@@ -76,7 +77,7 @@ class Carrier extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav msg={this.state.msg} />
         <Container fluid>
           <div className="proContainer">
             <Row>
@@ -88,7 +89,7 @@ class Carrier extends Component {
                       {this.state.pack
                         .map(pack => (
                           <ListItem key={pack._id} children={pack}>
-                            <h3>{pack.title}</h3>
+                            <h4>{pack.title}</h4>
                             <div>From: {pack.from} - To: {pack.to}</div>
                             <div>Sender: ???</div>
                             <div>Receiver: {pack.receiver}</div>
@@ -96,11 +97,12 @@ class Carrier extends Component {
                             <div>Package size: {pack.size}</div>
                             <div>Package weight: {pack.weight}</div>
                             <div>Shipping fee: $ {pack.fee}</div>
+                            <div>Description: {pack.description}</div>
                             <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
+                            <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} />
                             <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
                             {pack.image ? <img className="col-12 mx-auto img" alt="pack-img" src={pack.image} /> : console.log("no image")}
                             {/* {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={require(pack.image)} /> : <img className="col-md-3 mx-auto img" alt="pack" src={require("")} />} */}
-                            <div>Description: {pack.description}</div>
                           </ListItem>
                         ))
                       }

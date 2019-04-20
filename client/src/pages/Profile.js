@@ -10,7 +10,8 @@ class Profile extends Component {
   state = {
     pack: [],
     carrier: [],
-    user: null
+    user: null,
+    msg: [1,2,3]
   };
 
   componentDidMount() {
@@ -48,7 +49,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav msg={this.state.msg}/>
         <Container fluid>
           <div className="proContainer">
             <Row>
@@ -63,7 +64,7 @@ class Profile extends Component {
                           <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
                           <div className="status3">carrier: ???</div>
 
-                          <h3>{pack.title}</h3>
+                          <h4>{pack.title}</h4>
                           <div>From: {pack.from} - To: {pack.to}</div>
                           <div>Receiver: {pack.receiver}</div>
                           <div>Package size: {pack.size}</div>
@@ -71,7 +72,7 @@ class Profile extends Component {
                           <div>Shipping fee: $ {pack.fee}</div>
                           <div>Description: {pack.description}</div>
                           <div>Issue (UTC): {pack.date}</div>
-                          {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log("no image")}
+                          {pack.image ? <img className="col-12 mx-auto img" alt="pack" src={pack.image} /> : console.log("no image")}
                         </ListItem>
                       ))
                     }

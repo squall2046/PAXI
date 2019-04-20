@@ -29,7 +29,7 @@ class Nav extends Component {
       .catch(err => console.log(err))
   }
 
-  render() {
+  render(props) {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
@@ -40,14 +40,14 @@ class Nav extends Component {
             <li className="nav-item active">
               <Link to="/profile" className="nav-link">PAXI &nbsp;&nbsp;</Link>
             </li>
+            {/* <li className="nav-item">
+              <Link to="/profile" className="nav-item nav-link active text-muted navLink"><i className="fas fa-home"></i>Home &nbsp;&nbsp;</Link>
+            </li> */}
             <li className="nav-item">
-              <Link to="/profile" className="nav-item nav-link active text-muted"><i className="fas fa-home"></i>Home &nbsp;&nbsp;</Link>
+              <Link to="/customer" className="nav-item nav-link active text-muted navLink"><i className="fas fa-box-open"></i> Send Packs &nbsp; </Link>
             </li>
             <li className="nav-item">
-              <Link to="/customer" className="nav-item nav-link active text-muted"><i className="fas fa-box-open"></i>Send A Package &nbsp;&nbsp;</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/carrier" className="nav-item nav-link text-muted"><i className="fas fa-car-side"></i> Become Carrier</Link>
+              <Link to="/carrier" className="nav-item nav-link text-muted navLink"><i className="fas fa-car-side"></i> Become Carrier</Link>
             </li>
           </ul>
         </div>
@@ -60,13 +60,16 @@ class Nav extends Component {
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item my-auto">
-              <i className="text-light">{this.state.user ? this.state.user.name : "Guest"}</i>
+              <i className="text-light">{this.state.user ? this.state.user.name : "Guest"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</i>
             </li>
             <li className="nav-item">
-              <i className="text-light nav-user far fa-envelope"></i>
+              {this.props.msg ? <span className="pulse"> {this.props.msg ? this.props.msg.length : 0}</span> : <span className="hide"></span>}
             </li>
             <li className="nav-item">
-              <button className="btn btn-primary mr-auto" onClick={this.userLogout}>Logout</button>
+              <h3><i className="text-light nav-user far fa-envelope"></i></h3>
+            </li>
+            <li className="nav-item">
+              <button className="btn btn-primary btn-sm mr-auto" onClick={this.userLogout}>Logout</button>
             </li>
           </ul>
         </div>
