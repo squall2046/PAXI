@@ -29,7 +29,6 @@ class Carrier extends Component {
     mapBtnB: null,
     currentpackid: null,
     currentpacktitle: null,
-    msg: [1, 2, 3]
   };
 
   componentDidMount() {
@@ -92,7 +91,7 @@ class Carrier extends Component {
 
     return (
       <div>
-        <Nav msg={this.state.msg} />
+        <Nav />
 
         <Container fluid>
           <div className="proContainer">

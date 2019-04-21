@@ -11,7 +11,7 @@ class Profile extends Component {
     pack: [],
     carrier: [],
     user: null,
-    msg: [1,2,3]
+    // msg: null
   };
 
   componentDidMount() {
@@ -49,7 +49,8 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Nav msg={this.state.msg}/>
+        {/* <Nav msg={this.state.msg}/> */}
+        <Nav />
         <Container fluid>
           <div className="proContainer">
             <Row>

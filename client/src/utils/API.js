@@ -41,9 +41,12 @@ export default {
   },
 
   createMsgBtn: (msgInfo) => {
-    return axios.post("/api/message", msgInfo);
+    return axios.post("/api/message/create", msgInfo);
   },
 
+  findAllMsg: (userId) => {
+    return axios.get("/api/message/find/" + userId);
+  },
 
   // createUserBtn: (userInfo) => {
   //   console.log("reactAPI client req:", "userInfo");

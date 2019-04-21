@@ -6,6 +6,7 @@ import "./style.css";
 class Nav extends Component {
   state = {
     user: null,
+    message: [],
     redirectTo: null
   };
 
@@ -14,10 +15,22 @@ class Nav extends Component {
     const userObj = JSON.parse(userInfo);
     if (userInfo) {
       this.setState({ user: userObj },
-        () => console.log("Nav welcome user: ", this.state.user.name)
+        // () => console.log("Nav welcome user: ", this.state.user.name)
+        // () => console.log("message: ", this.state.user._id)
+        () => this.findAllMsg()
       )
     };
   };
+
+  findAllMsg() {
+    API.findAllMsg(this.state.user._id)
+      .then(res => {
+        this.setState({ message: res.data.message },
+          () => console.log("message: ", res.data)
+        )
+      })
+      .catch(err => console.log(err))
+  }
 
   userLogout = () => {
     API.userLogout()
@@ -63,7 +76,8 @@ class Nav extends Component {
               <i className="text-light">{this.state.user ? this.state.user.name : "Guest"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</i>
             </li>
             <li className="nav-item">
-              {this.props.msg ? <span className="pulse"> {this.props.msg ? this.props.msg.length : 0}</span> : <span className="hide"></span>}
+              {/* {this.props.msg ? <span className="pulse"> {this.props.msg.length} </span> : <span className="pulse"> 0 </span> } */}
+              {this.state.message.length > 0 ? <span className="pulse"> {this.state.message.length} </span> : console.log("no message")}
             </li>
             <li className="nav-item">
               <h3><i className="text-light nav-user far fa-envelope"></i></h3>
