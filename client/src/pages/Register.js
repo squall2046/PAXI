@@ -159,7 +159,7 @@ class Register extends Component {
     return (
       <div className="row mt-5">
         <div className="col-md-6 m-auto">
-          <div className="card card-body">
+          <div className="card card-body bg-light">
             <h1 className="text-center mb-3"><i className="fas fa-user-plus"></i> Register</h1>
 
             {this.state.errors ? this.state.errors.map((value, index) => {
@@ -169,7 +169,7 @@ class Register extends Component {
                   {/* <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> */}
                 </div>
               )
-            }) : <div className="text-danger mx-auto">Login page will appear when new account set up</div>}
+            }) : <div className="text-primary mx-auto"></div>}
 
             {/* <form action="/register" method="POST"> */}
             <div className="form-group">
@@ -222,10 +222,10 @@ class Register extends Component {
             </div>
 
             <button className="btn btn-primary btn-block" onClick={this.userRegister}>
-              <i className="fas fa-book-open"> Submit</i>
+            <i class="fas fa-user-plus"> Submit</i>
             </button>
             {/* </form> */}
-            <p className="lead mt-4">Have An Account? <Link to="/login">Login</Link></p>
+            <p className="lead mt-4">Have An Account? <Link to="/login"><span className="">Login</span></Link></p>
           </div>
         </div>
       </div>

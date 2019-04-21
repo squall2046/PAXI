@@ -1,3 +1,10 @@
+.bg-yellow {
+  background-color: #fedf19;
+  position: fixed;
+  width: 100%;
+  top:0;
+  bottom: 0;
+}
 
 .truck {
   width: 60%;

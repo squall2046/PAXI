@@ -79,7 +79,7 @@ class Login extends Component {
               />
             </div>
             <button className="btn btn-success btn-block" onClick={this.userLogin}>
-              <i className="fas fa-book-open"> Submit</i>
+            <i className="fas fa-sign-in-alt"> Submit</i>
             </button>
             {/* </form> */}
             <p className="lead mt-4">

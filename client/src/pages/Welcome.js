@@ -8,7 +8,7 @@ class Welcome extends Component {
 
   render() {
     return (
-      <div>
+      <div className="bg-yellow">
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
             <div className="card-body text-center">
