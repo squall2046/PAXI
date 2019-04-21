@@ -178,7 +178,7 @@ class Register extends Component {
                 type="name"
                 id="name"
                 name="name"
-                value={this.state.name}
+                value={this.state.name.trim()}
                 onChange={this.handleInputChange}
                 className="form-control"
                 placeholder="Enter Name"
@@ -190,7 +190,7 @@ class Register extends Component {
                 type="email"
                 id="email"
                 name="email"
-                value={this.state.email}
+                value={this.state.email.trim().toLowerCase()}
                 onChange={this.handleInputChange}
                 className="form-control"
                 placeholder="Enter Email"
