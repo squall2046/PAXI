@@ -25,6 +25,9 @@ h3 {
     right: 70px;
     margin: 0
 }
+.msgSize {
+  font-size: 12px;
+}
 
 .pulse {
     position: absolute;

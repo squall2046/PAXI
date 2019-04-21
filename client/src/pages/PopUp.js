@@ -13,7 +13,7 @@ class PopUp extends React.Component {
     title: null,
     content: null,
     packid: null,
-    // userid: this.props.userid,
+    // msgSender: this.props.senderid,
   };
 
   handleInputChange = event => {
@@ -24,8 +24,8 @@ class PopUp extends React.Component {
   };
 
   createMsgBtn = () => {
-    // const { title, content, packid, userid } = this.state;
-    // const msgInfo = { title, content, packid, userid };
+    // const { title, content, packid, msgSender } = this.state;
+    // const msgInfo = { title, content, packid, msgSender };
     const { title, content, packid } = this.state;
     const msgInfo = { title, content, packid };
     // console.log("==== msgInfo ====: ", msgInfo)

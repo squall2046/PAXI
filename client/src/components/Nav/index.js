@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
+import { Button, Modal } from 'react-bootstrap';
+import { List, ListItem } from "../List";
 import API from "../../utils/API";
 import "./style.css";
 
@@ -7,7 +9,16 @@ class Nav extends Component {
   state = {
     user: null,
     message: [],
-    redirectTo: null
+    redirectTo: null,
+    show: false,
+  };
+
+  handleShow = () => {
+    this.setState({ show: true });
+  };
+
+  handleHide = () => {
+    this.setState({ show: false });
   };
 
   componentDidMount() {
@@ -76,8 +87,44 @@ class Nav extends Component {
               <i className="text-light">{this.state.user ? this.state.user.name : "Guest"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</i>
             </li>
             <li className="nav-item">
-              {/* {this.props.msg ? <span className="pulse"> {this.props.msg.length} </span> : <span className="pulse"> 0 </span> } */}
-              {this.state.message.length > 0 ? <span className="pulse"> {this.state.message.length} </span> : console.log("no message")}
+
+              {/* ===================== check msg btn ====================== */}
+              {/* ===== react bootstrap modal (click to check message) ===== */}
+              <Button variant="dark" onClick={this.handleShow} >
+                {/* ========= message numbers and animation effect ========= */}
+                {this.state.message.length > 0
+                  ? <span className="pulse"> {this.state.message.length}</span>
+                  : console.log("no message")
+                }
+                {/* ========= message numbers and animation effect ========= */}
+              </Button>
+              <Modal
+                show={this.state.show}
+                onHide={this.handleHide}
+                dialogClassName="modal-50w"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    message list
+            </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {/* ========= customized components, not bootstrap ========= */}
+                  <List>
+                    {this.state.message
+                      .map((message, index) => (
+                        <ListItem key={index}>
+                          <span>&#9993; {message.title} </span>
+                          <span className="msgSize"> &#34; {message.content} &#34; </span>
+                        </ListItem>
+                      ))
+                    }
+                  </List>
+                  {/* ========= customized components, not bootstrap ========= */}
+                </Modal.Body>
+              </Modal>
+              {/* ===== react bootstrap modal (click to check message) ===== */}
+              {/* ========================================================== */}
             </li>
             <li className="nav-item">
               <h3><i className="text-light nav-user far fa-envelope"></i></h3>

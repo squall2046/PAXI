@@ -99,7 +99,8 @@ module.exports = {
   findAllMsg: function (req, res) {
     console.log(req.params.userId)
     db.User.find({ _id: req.params.userId })
-      .then(dbModel => { res.json(dbModel[0]); console.log("find user", dbModel[0]) })
+      .populate("message")
+      .then(dbModel => { res.json(dbModel[0]); console.log("find user and message", dbModel[0]) })
       .catch(err => res.status(422).json(err));
   },
 
