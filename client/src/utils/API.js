@@ -40,15 +40,9 @@ export default {
     return axios.put("/api/pack/delivered/" + packId);
   },
 
-  // findCarrier: (userId) => {
-  //   return axios.get("/api/pack/findcarrier/" + userId);
+  // createMsgBtn: (msgInfo) => {
+  //   return axios.post("/api/pack/message", msgInfo);
   // },
-
-  // updateCarrierRate: (userId) => {
-  //   return axios.put("/api/pack/updatecarrierrate/" + userId);
-  // },
-
-
 
 
   // createUserBtn: (userInfo) => {

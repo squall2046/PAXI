@@ -1,22 +1,33 @@
 import React, { Component } from "react";
+
+// install react-bootstrap npm,
+// for the bootstrap modal, we will import two parts:
+// first is button to open popup window:
+import { Button, ButtonToolbar } from 'react-bootstrap';
+// second is customized component PopUp or whatever:
+import PopUp from "./PopUp";
+// codes in PopUp are also from react bootstrap.
+
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import { MapBtn, MsgBtn, PickBtn } from "../components/Btn";
+import { MapBtn, PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Form, Input, FormBtn } from "../components/Form";
 import "./style.css";
 // import { Link } from "react-router-dom";
 // import { relative } from "path";
-// import Description from "../components/Description";
+
+
 class Carrier extends Component {
   state = {
+    modalShow: false,
     pack: [],
     carry: [],
     userId: null,
     mapBtnA: null,
     mapBtnB: null,
-    msg: [1,2,3]
+    msg: [1, 2, 3]
   };
 
   componentDidMount() {
@@ -75,9 +86,12 @@ class Carrier extends Component {
   }
 
   render() {
+    let modalClose = () => this.setState({ modalShow: false });
+
     return (
       <div>
         <Nav msg={this.state.msg} />
+
         <Container fluid>
           <div className="proContainer">
             <Row>
@@ -98,11 +112,30 @@ class Carrier extends Component {
                             <div>Package weight: {pack.weight}</div>
                             <div>Shipping fee: $ {pack.fee}</div>
                             <div>Description: {pack.description}</div>
-                            <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
-                            <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} />
-                            <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
                             {pack.image ? <img className="col-12 mx-auto img" alt="pack-img" src={pack.image} /> : console.log("no image")}
-                            {/* {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={require(pack.image)} /> : <img className="col-md-3 mx-auto img" alt="pack" src={require("")} />} */}
+                            <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
+                            {/* <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} /> */}
+                            <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
+
+                            {/* ========================================================== */}
+                            {/* ===== react bootstrap modal (click to pop-up window) ===== */}
+                            <div className="msg-btn">
+                              <ButtonToolbar>
+                                <Button
+                                  variant="primary"
+                                  onClick={() => this.setState({ modalShow: true })}
+                                > Send Msg
+                              </Button>
+                                <PopUp
+                                  show={this.state.modalShow}
+                                  onHide={modalClose}
+                                  packtitle={pack.title}
+                                  packid={pack._id}
+                                />
+                              </ButtonToolbar>
+                            </div>
+                            {/* ===== react bootstrap modal (click to pop-up window) ===== */}
+                            {/* ========================================================== */}
                           </ListItem>
                         ))
                       }
@@ -132,9 +165,9 @@ class Carrier extends Component {
                       placeholder="End"
                     />
 
-                    <FormBtn
-                      onClick={this.searchMap}
-                    />
+                    <FormBtn onClick={this.searchMap} btncolor="btn btn-sm btn-dark" >
+                      <i className="text-light fas fa-globe-americas"> Search</i>
+                    </FormBtn>
                   </Form>
                   <div className="googleMap">
                     {/* // // // // // // // //  */}

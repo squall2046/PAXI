@@ -20,7 +20,7 @@ class Customer extends Component {
     description: "",
     userId: null,
     redirectTo: null,
-    msg: [1,2,3]
+    msg: [1, 2, 3]
   };
 
   componentDidMount() {
@@ -36,7 +36,6 @@ class Customer extends Component {
       )
     };
   };
-
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -144,9 +143,13 @@ class Customer extends Component {
                     />
 
                     <FormBtn
+                      btncolor="btn btn-danger"
                       disabled={!(this.state.title && this.state.size && this.state.weight && this.state.from && this.state.to && this.state.receiver && this.state.fee)}
                       onClick={this.createPackBtn}
-                    />
+                    >
+                      <i className="fas fa-shipping-fast"> Submit</i>
+                    </FormBtn>
+
                   </Form>
                 </Results>
               </Col>

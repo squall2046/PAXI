@@ -90,3 +90,15 @@
   border-radius: 10px;
   background: rgba(190, 190, 190, 0.5)
 }
+
+.msg-btn {
+  position: absolute;
+  float: right;
+  color: white;
+  right: 100px;
+  bottom: 10px
+}
+
+.subtitle {
+  font-size: 12px;
+  }

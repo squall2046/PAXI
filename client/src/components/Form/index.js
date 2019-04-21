@@ -17,10 +17,18 @@ export function Input(props) {
   );
 }
 
+export function Textarea(props) {
+  return (
+    <div className="form-group">
+      <textarea className="form-control mx-auto input" id="message-text" {...props} value={""} />
+    </div>
+  );
+}
+
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ marginBottom: 10 }} type="submit" className="btn btn-danger">
-      <i className="fas fa-shipping-fast"> Submit</i>
+    <button {...props} style={{ marginBottom: 10 }} type="submit" className={props.btncolor}>
+      {props.children}
     </button>
   );
 }

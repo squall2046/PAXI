@@ -17,6 +17,11 @@ router
   .route("/pack/findall")
   .get(Controller.findAllPacks);
 
+// carrier find all available packs
+router
+  .route("/pack/findunpicked")
+  .get(Controller.findUnpicked);
+
 // carrier pick a pack
 router
   .route("/pack/carrier/:userId/:packId")
@@ -27,10 +32,10 @@ router
   .route("/pack/delivered/:packId")
   .put(Controller.updateDelivered);
 
-// carrier find all available packs
-router
-  .route("/pack/findunpicked")
-  .get(Controller.findUnpicked);
+// // carrier find all available packs
+// router
+// .route("/pack/message")
+// .get(Controller.createMsgBtn);
 
 
 module.exports = router;

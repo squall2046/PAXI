@@ -78,7 +78,7 @@ class Profile extends Component {
                     }
                   </List>
                 ) : (
-                    <h3> &nbsp; No shipping packages </h3>
+                    <h6> &nbsp; No shipping packages </h6>
                   )}
               </Col>
               <Col size="md-6">
@@ -111,7 +111,7 @@ class Profile extends Component {
                     }
                   </List>
                 ) : (
-                    <h3> &nbsp; No carried packages </h3>
+                    <h6> &nbsp; No carried packages </h6>
                   )}
               </Col>
             </Row>

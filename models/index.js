@@ -1,4 +1,5 @@
 module.exports = {
   User: require("./user"),
-  Pack: require("./pack")
+  Pack: require("./pack"),
+  Message: require("./message")
 };
