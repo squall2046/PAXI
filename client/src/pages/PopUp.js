@@ -10,9 +10,9 @@ class PopUp extends React.Component {
 
   state = {
     show: false,
-    packid: this.props.packid,
     title: null,
-    content: null
+    content: null,
+    packid: this.props.packid
   };
 
   handleInputChange = event => {
@@ -22,12 +22,15 @@ class PopUp extends React.Component {
     });
   };
 
-  // createMsgBtn = () => {
-  //   API.createMsgBtn(this.state)
-  //     .then(res => console.log("response to popup message: ", res.data))
-  //     .then(res => alert(`Your message has sent!`))
-  //     .catch(err => console.log(err));
-  // }
+  createMsgBtn = () => {
+    const { title, content, packid } = this.state;
+    const msgInfo = { title, content, packid };
+    console.log("==== msgInfo ====: ", msgInfo)
+    API.createMsgBtn(msgInfo)
+      .then(res => console.log("response to popup message: ", res.data))
+      .then(res => alert(`Your message has sent!`))
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (

@@ -32,10 +32,10 @@ router
   .route("/pack/delivered/:packId")
   .put(Controller.updateDelivered);
 
-// // carrier find all available packs
-// router
-// .route("/pack/message")
-// .get(Controller.createMsgBtn);
+// carrier find all available packs
+router
+.route("/message")
+.post(Controller.createMsgBtn);
 
 
 module.exports = router;

@@ -12,7 +12,7 @@ export function Form(props) {
 export function Input(props) {
   return (
     <div className="form-group">
-      <input className="form-control mx-auto input" {...props} value={""} />
+      <input className="form-control mx-auto input" {...props} value={props.children} />
     </div>
   );
 }
@@ -20,7 +20,7 @@ export function Input(props) {
 export function Textarea(props) {
   return (
     <div className="form-group">
-      <textarea className="form-control mx-auto input" id="message-text" {...props} value={""} />
+      <textarea className="form-control mx-auto input" id="message-text" {...props} value={props.children} />
     </div>
   );
 }

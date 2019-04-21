@@ -40,9 +40,9 @@ export default {
     return axios.put("/api/pack/delivered/" + packId);
   },
 
-  // createMsgBtn: (msgInfo) => {
-  //   return axios.post("/api/pack/message", msgInfo);
-  // },
+  createMsgBtn: (msgInfo) => {
+    return axios.post("/api/message", msgInfo);
+  },
 
 
   // createUserBtn: (userInfo) => {

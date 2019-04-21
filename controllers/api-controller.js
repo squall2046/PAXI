@@ -83,12 +83,12 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  // createMsgBtn: function (req, res) {
-  //   console.log("req.body", req.body)
-  //   db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isDelivered: true })
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
+  createMsgBtn: function (req, res) {
+    console.log("req.body", req.body)
+    db.Message.create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 
 
 
