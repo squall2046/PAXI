@@ -27,6 +27,8 @@ class Carrier extends Component {
     userId: null,
     mapBtnA: null,
     mapBtnB: null,
+    currentpackid: null,
+    currentpacktitle: null,
     msg: [1, 2, 3]
   };
 
@@ -101,9 +103,10 @@ class Carrier extends Component {
                   {this.state.pack.length ? (
                     <List>
                       {this.state.pack
-                        .map(pack => (
-                          <ListItem key={pack._id} children={pack}>
-                            <h4>{pack.title}</h4>
+                        .map((pack, index) => (
+                          <ListItem key={index} children={pack}>
+                            {/* <ListItem key={pack._id} children={pack}> */}
+                            <h4 data-id={pack._id}>{pack.title}</h4>
                             <div>From: {pack.from} - To: {pack.to}</div>
                             <div>Sender: ???</div>
                             <div>Receiver: {pack.receiver}</div>
@@ -117,20 +120,26 @@ class Carrier extends Component {
                             {/* <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} /> */}
                             <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
 
-                            {/* ========================================================== */}
+                            {/* ====================== send msg btn ====================== */}
                             {/* ===== react bootstrap modal (click to pop-up window) ===== */}
                             <div className="msg-btn">
                               <ButtonToolbar>
                                 <Button
                                   variant="primary"
-                                  onClick={() => this.setState({ modalShow: true })}
+                                  onClick={() =>
+                                    this.setState({
+                                      modalShow: true,
+                                      currentpackid: pack._id,
+                                      currentpacktitle: pack.title
+                                    })
+                                  }
                                 > Send Msg
                               </Button>
                                 <PopUp
                                   show={this.state.modalShow}
                                   onHide={modalClose}
-                                  packtitle={pack.title}
-                                  packid={pack._id}
+                                  packid={this.state.currentpackid}
+                                  packtitle={this.state.currentpacktitle}
                                 />
                               </ButtonToolbar>
                             </div>

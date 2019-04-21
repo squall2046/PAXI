@@ -84,11 +84,17 @@ module.exports = {
   },
 
   createMsgBtn: function (req, res) {
-    console.log("req.body", req.body)
     db.Message.create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
+    .then(dbModel => {
+      console.log("\n new message created: ", dbModel, "\n");
+      return db.User.findOneAndUpdate({ pack: dbModel.packid }, { $push: { message: dbModel._id } }, { new: true });
+    })
+    .then(dbUser => {
+      console.log("\n response the user info: ", dbUser);
+      res.json(dbUser);
+    })
+    .catch(err => res.status(422).json(err));
+},
 
 
 

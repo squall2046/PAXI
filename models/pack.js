@@ -19,7 +19,7 @@ const packSchema = new Schema({
   isDelivered: { type: Boolean, default: false },
   date: { type: Date, default: Date.now },
 
-  message: [{ type: Schema.Types.ObjectId, ref: "Message" }]
+  // message: [{ type: Schema.Types.ObjectId, ref: "Message" }]
 });
 
 const Pack = mongoose.model("Pack", packSchema);

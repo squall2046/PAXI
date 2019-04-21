@@ -12,6 +12,7 @@ const userSchema = new Schema({
   date: { type: Date, default: Date.now },
   pack: [{ type: Schema.Types.ObjectId, ref: "Pack" }],
   carrier: [{ type: Schema.Types.ObjectId, ref: "Pack" }],
+  message: [{ type: Schema.Types.ObjectId, ref: "Message" }],
 });
 
 const User = mongoose.model("User", userSchema);

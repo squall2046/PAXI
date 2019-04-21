@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const packSchema = new Schema({
   title: { type: String },
   content: { type: String },
-  packid: [{ type: Schema.Types.ObjectId, ref: "Pack" }]
+  packid: { type: String },
+  // userid: { type: String },
 });
 
 const Message = mongoose.model("Message", packSchema);

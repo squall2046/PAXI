@@ -47,7 +47,8 @@ class App extends Component {
           <Route exact path="/customer" component={Customer} />
           <Route exact path="/carrier" component={Carrier} />
           <Route exact path="/status" component={Status} />
-          <Route component={Profile} />
+          <Redirect to={{pathname: '/profile'}}/>
+          {/* <Route component={Profile} /> */}
           {/* <Route path="/profile/:id" component={Profile} /> */}
         </Switch>
       </div>

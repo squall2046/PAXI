@@ -12,7 +12,8 @@ class PopUp extends React.Component {
     show: false,
     title: null,
     content: null,
-    packid: this.props.packid
+    packid: null,
+    // userid: this.props.userid,
   };
 
   handleInputChange = event => {
@@ -23,16 +24,19 @@ class PopUp extends React.Component {
   };
 
   createMsgBtn = () => {
+    // const { title, content, packid, userid } = this.state;
+    // const msgInfo = { title, content, packid, userid };
     const { title, content, packid } = this.state;
     const msgInfo = { title, content, packid };
-    console.log("==== msgInfo ====: ", msgInfo)
+    // console.log("==== msgInfo ====: ", msgInfo)
     API.createMsgBtn(msgInfo)
       .then(res => console.log("response to popup message: ", res.data))
-      .then(res => alert(`Your message has sent!`))
+      // .then(res => alert(`Your message has sent!`))
       .catch(err => console.log(err));
   }
 
   render() {
+    // console.log(this.props)
     return (
       <Modal
         {...this.props}
@@ -69,7 +73,10 @@ class PopUp extends React.Component {
         <Modal.Footer>
           {/* <Button onClick={this.props.onHide}>Close</Button> */}
           <FormBtn
-            onClick={this.createMsgBtn}
+            onClick={() => {
+              this.setState({ packid: this.props.packid },
+                () => { this.createMsgBtn() });
+            }}
             btncolor="btn btn-success"
           >
             <i className="fas fa-envelope-open"> Send</i>
