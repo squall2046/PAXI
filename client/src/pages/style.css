@@ -1,16 +1,28 @@
-.bg-yellow {
+.bg-yellow, .bg-green {
   background-color: #fedf19;
   position: fixed;
   width: 100%;
   top:0;
   bottom: 0;
 }
+.bg-green {
+  background-color: #92d0bb;
+  position: fixed;
+  width: 100%;
+  top:0;
+  bottom: 0;
+}
+
 
 .truck {
   width: 60%;
   height: auto;
 }
-
+.truck2 {
+  margin-top: 30px;
+  width: 30%;
+  height: auto;
+}
 
 .proContainer{
   margin: 70px 0;

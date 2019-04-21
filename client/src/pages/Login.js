@@ -52,43 +52,45 @@ class Login extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
     return (
-      <div className="row mt-5">
-        <div className="col-md-6 m-auto">
-          <div className="card card-body">
-            <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>Login</h1>
-            {/* <form action="/login" method="POST"> */}
-            <div className="form-group">
-              <span>Email</span>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleInputChange}
-                placeholder="Enter Email"
-              />
+      <div className="bg-green">
+        <div className="row mt-5">
+          <div className="col-md-6 m-auto">
+            <div className="card-body">
+              <div className="text-center"><img className="truck2" src={require('./cruiser.gif')} /></div>
+              <h1 className="text-center mb-3">Login</h1>
+              {/* <form action="/login" method="POST"> */}
+              <div className="form-group">
+                <span>Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  placeholder="Enter Email"
+                />
 
-              <span>Password</span>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                placeholder="Enter Password"
-              />
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  placeholder="Enter Password"
+                />
+              </div>
+              <button className="btn btn-success btn-block" onClick={this.userLogin}>
+                <i className="fas fa-sign-in-alt"> Submit</i>
+              </button>
+              {/* </form> */}
+              <p className="lead mt-4">
+                No Account? <Link to="/register">Register</Link>
+              </p>
             </div>
-            <button className="btn btn-success btn-block" onClick={this.userLogin}>
-            <i className="fas fa-sign-in-alt"> Submit</i>
-            </button>
-            {/* </form> */}
-            <p className="lead mt-4">
-              No Account? <Link to="/register">Register</Link>
-            </p>
           </div>
         </div>
       </div>
-
     )
   }
 }
