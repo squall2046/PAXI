@@ -161,7 +161,7 @@ class Register extends Component {
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
             <div className="card-body">
-              <div className="text-center"><img className="truck3" src={require('./mini.gif')} /></div>
+              <div className="text-center"><img alt="" className="truck3" src={require('./mini.gif')} /></div>
               <h1 className="text-center mb-3">Register</h1>
 
               {this.state.errors ? this.state.errors.map((value, index) => {

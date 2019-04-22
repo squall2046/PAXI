@@ -48,7 +48,7 @@ class Nav extends Component {
       .then(res => {
         console.log("(Nav)logout response: %O", res.data);
         sessionStorage.removeItem("user")
-        this.setState({ redirectTo: "/login" })
+        this.setState({ redirectTo: "/" })
       })
       .catch(err => console.log(err))
   }

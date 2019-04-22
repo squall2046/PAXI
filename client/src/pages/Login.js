@@ -56,7 +56,7 @@ class Login extends Component {
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
             <div className="card-body">
-              <div className="text-center"><img className="truck2" src={require('./cruiser.gif')} /></div>
+              <div className="text-center"><img alt="" className="truck2" src={require('./cruiser.gif')} /></div>
               <h1 className="text-center mb-3">Login</h1>
               {/* <form action="/login" method="POST"> */}
               <div className="form-group">

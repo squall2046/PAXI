@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          {/* <Route exact path="/" component={Welcome} /> */}
+          <Route exact path="/" component={Welcome} />
           {/* <Route exact path="/register" component={Register} /> */}
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />

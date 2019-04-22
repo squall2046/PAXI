@@ -10,7 +10,7 @@ class Welcome extends Component {
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
             <div className="card-body text-center">
-              <img className="truck" src={require('./truck.gif')} />
+              <img alt="" className="truck" src={require('./truck.gif')} />
               <h1>PAXI</h1>
 
               <p>Create an account or login</p>
