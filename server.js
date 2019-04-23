@@ -52,9 +52,9 @@ app.use(morgan("dev"));
 app.use('/', require('./routes/index.js'));
 app.use('/api', require('./routes/api.js'));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 // Start the API server
 const PORT = process.env.PORT || 3001;
