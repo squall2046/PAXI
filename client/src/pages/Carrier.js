@@ -186,16 +186,16 @@ class Carrier extends Component {
                       center: { lat: 37.537941, lng: -77.434769 },
                       zoom: 8
                     }}
-                  // onMapLoad={map => {
-                  //   const marker = new window.google.maps.Marker({
-                  //     position: { lat: 41.0082, lng: 28.9784 },
-                  //     map: map,
-                  //     title: 'Hello Istanbul!'
-                  //   });
-                  // marker.addListener('click', e => {
-                  //   this.createInfoWindow(e, map)
-                  // })
-                  // }}
+                  onMapLoad={map => {
+                    const marker = new window.google.maps.Marker({
+                      position: { lat: 37.537941, lng: -77.434769 },
+                      map: map,
+                      title: 'Richmond VA'
+                    });
+                  marker.addListener('click', e => {
+                    this.createInfoWindow(e, map)
+                  })
+                  }}
                   />
                   {/* // // // // // // // //  */}
                 </div>

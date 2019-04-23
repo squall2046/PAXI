@@ -23,6 +23,13 @@ class PopUp extends React.Component {
     });
   };
 
+  onClickCombine = () => {
+    this.setState({ packid: this.props.packid },
+      () => { this.createMsgBtn() },
+    );
+    this.props.onHide()
+  }
+
   createMsgBtn = () => {
     // const { title, content, packid, msgSender } = this.state;
     // const msgInfo = { title, content, packid, msgSender };
@@ -73,10 +80,8 @@ class PopUp extends React.Component {
         <Modal.Footer>
           {/* <Button onClick={this.props.onHide}>Close</Button> */}
           <FormBtn
-            onClick={() => {
-              this.setState({ packid: this.props.packid },
-                () => { this.createMsgBtn() });
-            }}
+            disabled={!(this.state.title && this.state.content)}
+            onClick={this.onClickCombine}
             btncolor="btn btn-success"
           >
             <i className="fas fa-envelope-open"> Send</i>

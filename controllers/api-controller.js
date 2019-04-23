@@ -7,13 +7,13 @@ module.exports = {
     // console.log("\n create pack from: ", req.body)
     db.Pack.create(req.body)
       .then(dbModel => {
-        console.log("\n created new pack: ", dbModel, "\n");
-        console.log("===== new pack id: ", dbModel._id);
-        console.log("===== new pack belong to user: ", dbModel.userId);
+        // console.log("\n created new pack: ", dbModel, "\n");
+        // console.log("===== new pack id: ", dbModel._id);
+        // console.log("===== new pack belong to user: ", dbModel.userId);
         return db.User.findOneAndUpdate({ _id: dbModel.userId }, { $push: { pack: dbModel._id } }, { new: true });
       })
       .then(dbUser => {
-        console.log("\n response the user info: ", dbUser);
+        // console.log("\n response the user info: ", dbUser);
         res.json(dbUser);
       })
       .catch(err => res.status(422).json(err));
@@ -77,7 +77,7 @@ module.exports = {
   },
 
   updateDelivered: function (req, res) {
-    console.log("req.params.packId", req.params.packId)
+    // console.log("req.params.packId", req.params.packId)
     db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isDelivered: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -86,21 +86,24 @@ module.exports = {
   createMsgBtn: function (req, res) {
     db.Message.create(req.body)
       .then(dbModel => {
-        console.log("\n new message created: ", dbModel, "\n");
+        // console.log("\n new message created: ", dbModel, "\n");
         return db.User.findOneAndUpdate({ pack: dbModel.packid }, { $push: { message: dbModel._id } }, { new: true });
       })
       .then(dbUser => {
-        console.log("\n response the user info: ", dbUser);
+        // console.log("\n response the user info: ", dbUser);
         res.json(dbUser);
       })
       .catch(err => res.status(422).json(err));
   },
 
   findAllMsg: function (req, res) {
-    console.log(req.params.userId)
+    // console.log(req.params.userId)
     db.User.find({ _id: req.params.userId })
       .populate("message")
-      .then(dbModel => { res.json(dbModel[0]); console.log("find user and message", dbModel[0]) })
+      .then(dbModel => {
+        res.json(dbModel[0]);
+        //  console.log("find user and message", dbModel[0])
+      })
       .catch(err => res.status(422).json(err));
   },
 
