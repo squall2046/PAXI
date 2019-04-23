@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { render } from 'react-dom';
 
 // install react-bootstrap npm,
 // for the bootstrap modal, we will import two parts:
@@ -8,9 +9,11 @@ import { Button, ButtonToolbar } from 'react-bootstrap';
 import PopUp from "./PopUp";
 // codes in PopUp are also from react bootstrap.
 
+import Map from './map'
+// import InfoWindow from './InfoWindow'
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import { MapBtn, PickBtn } from "../components/Btn";
+import { PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Form, Input, FormBtn } from "../components/Form";
@@ -88,7 +91,6 @@ class Carrier extends Component {
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
-
     return (
       <div>
         <Nav />
@@ -115,7 +117,7 @@ class Carrier extends Component {
                             <div>Shipping fee: $ {pack.fee}</div>
                             <div>Description: {pack.description}</div>
                             {pack.image ? <img className="col-12 mx-auto img" alt="pack-img" src={pack.image} /> : console.log("no image")}
-                            <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
+                            {/* <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} /> */}
                             {/* <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} /> */}
                             <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
 
@@ -124,7 +126,7 @@ class Carrier extends Component {
                             <div className="msg-btn">
                               <ButtonToolbar>
                                 <Button
-                                  variant="primary"
+                                  variant="danger"
                                   onClick={() =>
                                     this.setState({
                                       modalShow: true,
@@ -149,7 +151,7 @@ class Carrier extends Component {
                       }
                     </List>
                   ) : (
-                      <h3> &nbsp; No shipping packages </h3>
+                      <h6> &nbsp; No shipping packages </h6>
                     )}
                 </div>
               </Col>
@@ -177,12 +179,25 @@ class Carrier extends Component {
                       <i className="text-light fas fa-globe-americas"> Search</i>
                     </FormBtn>
                   </Form>
-                  <div className="googleMap">
-                    {/* // // // // // // // //  */}
-                    {/* // // // // // // // //  */}
-                    {/* // // // // // // // //  */}
-                    {/* // // // // // // // //  */}
-                  </div>
+                  {/* // // // // // // // //  */}
+                  <Map
+                    id="myMap"
+                    options={{
+                      center: { lat: 41.0082, lng: 28.9784 },
+                      zoom: 8
+                    }}
+                  // onMapLoad={map => {
+                  //   const marker = new window.google.maps.Marker({
+                  //     position: { lat: 41.0082, lng: 28.9784 },
+                  //     map: map,
+                  //     title: 'Hello Istanbul!'
+                  //   });
+                  // marker.addListener('click', e => {
+                  //   this.createInfoWindow(e, map)
+                  // })
+                  // }}
+                  />
+                  {/* // // // // // // // //  */}
                 </div>
               </Col>
             </Row>

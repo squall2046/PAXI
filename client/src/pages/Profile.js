@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import { MapBtn } from "../components/Btn";
+// import { MapBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import "./style.css";
@@ -55,7 +55,7 @@ class Profile extends Component {
           <div className="proContainer">
             <Row>
               <Col size="md-6">
-                <div className="h3">Shipped packages</div>
+                <div className="h3">Shipping packages</div>
                 {this.state.pack.length ? (
                   <List>
                     {this.state.pack
@@ -92,7 +92,7 @@ class Profile extends Component {
                           {/* <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div> */}
                           {/* <div className="status">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div> */}
                           {/* <div className="status3">carrier: me</div> */}
-                          <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} />
+                          {/* <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} /> */}
                           <button onClick={() => this.updateDelivered(pack._id)} className={pack.isDelivered ? "btn btn-secondary text-light fadeBtn" : "btn btn-success text-light fadeBtn"} disabled={pack.isDelivered}>
                             {pack.isDelivered ? <span> Delivered </span> : <span>Confirm Delivery</span>}
                           </button>
@@ -106,7 +106,7 @@ class Profile extends Component {
                           <div>Shipping fee: $ {pack.fee}</div>
                           <div>Description: {pack.description}</div>
                           <div>Issue (UTC): {pack.date}</div>
-                          {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : <img className="col-md-3 mx-auto img" alt="pack" src="" />}
+                          {pack.image ? <img className="col-md-3 mx-auto img" alt="pack" src={pack.image} /> : console.log("no img")}
                         </ListItem>
                       ))
                     }
