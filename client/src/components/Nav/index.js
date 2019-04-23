@@ -104,9 +104,7 @@ class Nav extends Component {
                 dialogClassName="modal-50w"
               >
                 <Modal.Header closeButton>
-                  <Modal.Title>
-                    message list
-            </Modal.Title>
+                  <Modal.Title> message list </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   {/* ========= customized components, not bootstrap ========= */}
