@@ -183,7 +183,7 @@ class Carrier extends Component {
                   <Map
                     id="myMap"
                     options={{
-                      center: { lat: 41.0082, lng: 28.9784 },
+                      center: { lat: 37.537941, lng: -77.434769 },
                       zoom: 8
                     }}
                   // onMapLoad={map => {
