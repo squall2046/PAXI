@@ -4,7 +4,7 @@
 - [x] MongoDB Mongoose
 - [x] Node Express
 - [x] React
-- [x] Google Books API
+- [x] Google Map API
 - [x] JavaScript/JQuery
 - [x] CSS/Bootstrap
 
