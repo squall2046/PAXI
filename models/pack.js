@@ -12,6 +12,7 @@ const packSchema = new Schema({
   image: { type: String },
   description: { type: String },
   userId: { type: String },
+  carrierId: { type: String },
 
   createdBy: { type: String },
   carriedBy: { type: String },

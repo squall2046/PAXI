@@ -63,7 +63,7 @@ class Profile extends Component {
                         <ListItem key={pack._id}>
                           <div className="status">Picked: {pack.isPicked ? <span>yes</span> : <span>no</span>}</div>
                           <div className="status2">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div>
-                          <div className="status3">carrier: ???</div>
+                          {pack.carrierId ? <div className="status3">carrier ID: {pack.carrierId} </div> : <div className="status3">Waiting for Carrier</div>}
 
                           <h4>{pack.title}</h4>
                           <div>From: {pack.from} - To: {pack.to}</div>

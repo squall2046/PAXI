@@ -109,7 +109,7 @@ class Carrier extends Component {
                             {/* <ListItem key={pack._id} children={pack}> */}
                             <h4 data-id={pack._id}>{pack.title}</h4>
                             <div>From: {pack.from} - To: {pack.to}</div>
-                            <div>Sender: ???</div>
+                            <div>Sender ID: {pack.userId}</div>
                             <div>Receiver: {pack.receiver}</div>
 
                             <div>Package size: {pack.size}</div>

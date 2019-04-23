@@ -56,7 +56,7 @@ module.exports = {
 
   updateCarrier: function (req, res) {
     // console.log("\n req.params.userId:", req.params.userId, "\n req.params.packId:", req.params.packId);
-    db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true })
+    db.Pack.findOneAndUpdate({ _id: req.params.packId }, { isPicked: true, carrierId: req.params.userId })
       // .then(dbModel => {
       //   //   console.log("\n ========: ", dbModel, "\n");
       //   const { title, from, to, size, weight, receiver, fee, image, description } = dbModel;

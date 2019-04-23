@@ -18,7 +18,7 @@ class Map extends Component {
       var s = document.createElement('script');
       s.type = 'text/javascript';
       // s.src = `https://maps.google.com/maps/api/js?key=AIzaSyCROVYQjR8c6nvS7A2YRzWns93AfawajSE`;
-      s.src = `https://maps.google.com/maps/api/js?key=AIzaSyDnZHCNVuYH8lZSMZtuHzJ4677eUi6AE8w&callback=initMap`;
+      s.src = `https://maps.google.com/maps/api/js?key=AIzaSyDnZHCNVuYH8lZSMZtuHzJ4677eUi6AE8w`;
       var x = document.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
       // Below is important. 
