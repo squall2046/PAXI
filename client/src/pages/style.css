@@ -135,3 +135,20 @@
 
 
   /* //////////////////////////////////// */
+
+  
+.msg-btn {
+  position: absolute;
+  float: right;
+  color: white;
+  right: 100px;
+  top: 10px
+}
+
+.pick-btn {
+  position: absolute;
+  float: right;
+  color: white;
+  right: 15px;
+  top: 10px
+}
