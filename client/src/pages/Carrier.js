@@ -118,7 +118,7 @@ class Carrier extends Component {
                             <div>Package weight: {pack.weight}</div>
                             <div>Shipping fee: $ {pack.fee}</div>
                             <div>Description: {pack.description}</div>
-                            {pack.image ? <img className="col-12 mx-auto img" alt="pack-img" src={pack.image} /> : console.log("no image")}
+                            <img className="col-12 mx-auto img" alt="pack-img" src={pack.image ? pack.image : require('./pack.png')} />
                             {/* <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} /> */}
                             {/* <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} /> */}
                             {/* <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} /> */}
