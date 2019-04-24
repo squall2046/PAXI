@@ -223,7 +223,7 @@ class Carrier extends Component {
                       placeholder="End"
                     />
 
-                    <FormBtn onClick={() => this.searchMap} btncolor="btn btn-sm btn-dark" >
+                    <FormBtn onClick={() => this.searchMap()} btncolor="btn btn-sm btn-dark" >
                       <i className="text-light fas fa-globe-americas"> Search</i>
                     </FormBtn>
                   </Form>

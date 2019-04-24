@@ -43,7 +43,7 @@ class Customer extends Component {
     });
   };
 
-  createPackBtn = () => {
+  createPackBtn() {
     API.createPackBtn(this.state)
       .then(res => console.log("response to customer: ", res.data))
       // .then(res => alert(`Your ${res.data.title} has posted!`))
@@ -143,7 +143,7 @@ class Customer extends Component {
                     <FormBtn
                       btncolor="btn btn-danger"
                       disabled={!(this.state.title && this.state.size && this.state.weight && this.state.from && this.state.to && this.state.receiver && this.state.fee)}
-                      onClick={() => this.createPackBtn}
+                      onClick={() => this.createPackBtn()}
                     >
                       <i className="fas fa-shipping-fast"> Submit</i>
                     </FormBtn>
