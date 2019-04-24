@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // install react-bootstrap npm,
 // for the bootstrap modal, we will import two parts:
 // first is button to open popup window:
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 // second is customized component PopUp or whatever:
 import PopUp from "./PopUp";
 // codes in PopUp are also from react bootstrap.
@@ -25,6 +25,7 @@ import "./style.css";
 class Carrier extends Component {
   state = {
     modalShow: false,
+    smShow: false,
     pack: [],
     carry: [],
     userId: null,
@@ -67,14 +68,14 @@ class Carrier extends Component {
   };
 
   pickBtnSubmit = packId => {
-    if (prompt("Do you want to carry this pack? Input 'yes' or 'no'") === "yes") {
-      // console.log("carrier req userId:", this.state.userId, "\n carrier req packId:", packId)
-      API.updateCarrier(this.state.userId, packId)
-        .then(res => { console.log(res.data); this.componentDidMount() });
-      // .then(res => window.location.replace("/"))
-      // .catch(err => console.log(err));
-      // 刷新 mount 中全部内容!!!
-    }
+    // if (prompt("Do you want to carry this pack? Input 'yes' or 'no'") === "yes") {
+    // console.log("carrier req userId:", this.state.userId, "\n carrier req packId:", packId)
+    API.updateCarrier(this.state.userId, packId)
+      .then(res => { console.log(res.data); this.componentDidMount() })
+      .then(res => this.setState({ smShow: false }))
+    // .catch(err => console.log(err));
+    // 刷新 mount 中全部内容!!!
+    // }
   }
 
   mapBtnSubmit = packId => {
@@ -83,14 +84,15 @@ class Carrier extends Component {
     // .catch(err => console.log(err));
   }
 
-  searchMap() {
-    // API.mapBtnSubmit(packId)
-    // .then(res => this.loadBooks())
-    // .catch(err => console.log(err));
-  }
+  // searchMap() {
+  // API.mapBtnSubmit(packId)
+  // .then(res => this.loadBooks())
+  // .catch(err => console.log(err));
+  // }
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
+    let smClose = () => this.setState({ smShow: false });
     return (
       <div>
         <Nav />
@@ -119,7 +121,47 @@ class Carrier extends Component {
                             {pack.image ? <img className="col-12 mx-auto img" alt="pack-img" src={pack.image} /> : console.log("no image")}
                             {/* <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} /> */}
                             {/* <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} /> */}
-                            <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} />
+                            {/* <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} /> */}
+
+                            {/* ====================== pick it btn ====================== */}
+                            {/* ===== react bootstrap modal (click to pop-up window) ===== */}
+                            <div className="pick-btn">
+                              <ButtonToolbar>
+                                <Button onClick={() => this.setState({ smShow: true })}>
+                                  Pick it
+                                </Button>
+                                <Modal
+                                  size="sm"
+                                  show={this.state.smShow}
+                                  onHide={smClose}
+                                  aria-labelledby="example-modal-sizes-title-sm"
+                                >
+                                  <Modal.Header closeButton>
+                                    <Modal.Title id="example-modal-sizes-title-sm">
+                                      Carrier Confirm
+                                    </Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    Would you like to pick this pack?
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <FormBtn
+                                      onClick={() => this.pickBtnSubmit(pack._id)}
+                                      btncolor="btn btn-success"
+                                    >
+                                      Yes
+                                  </FormBtn>
+                                    <FormBtn
+                                      onClick={() => this.setState({ smShow: false })}
+                                      btncolor="btn btn-secondary"
+                                    >
+                                      No
+                                  </FormBtn>
+                                  </Modal.Footer>
+                                </Modal>
+                              </ButtonToolbar>
+                            </div>
+                            {/* ==========================done============================ */}
 
                             {/* ====================== send msg btn ====================== */}
                             {/* ===== react bootstrap modal (click to pop-up window) ===== */}
@@ -144,8 +186,7 @@ class Carrier extends Component {
                                 />
                               </ButtonToolbar>
                             </div>
-                            {/* ===== react bootstrap modal (click to pop-up window) ===== */}
-                            {/* ========================================================== */}
+                            {/* ==========================done============================ */}
                           </ListItem>
                         ))
                       }
@@ -186,16 +227,16 @@ class Carrier extends Component {
                       center: { lat: 37.537941, lng: -77.434769 },
                       zoom: 8
                     }}
-                  onMapLoad={map => {
-                    const marker = new window.google.maps.Marker({
-                      position: { lat: 37.537941, lng: -77.434769 },
-                      map: map,
-                      title: 'Richmond VA'
-                    });
-                  marker.addListener('click', e => {
-                    this.createInfoWindow(e, map)
-                  })
-                  }}
+                    onMapLoad={map => {
+                      const marker = new window.google.maps.Marker({
+                        position: { lat: 37.537941, lng: -77.434769 },
+                        map: map,
+                        title: 'Richmond VA'
+                      });
+                      marker.addListener('click', e => {
+                        this.createInfoWindow(e, map)
+                      })
+                    }}
                   />
                   {/* // // // // // // // //  */}
                 </div>

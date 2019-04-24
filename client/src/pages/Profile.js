@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
+
 import API from "../utils/API";
 import Nav from "../components/Nav";
 // import { MapBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import { FormBtn } from "../components/Form";
+
 import "./style.css";
 
 class Profile extends Component {
   state = {
+    smShow: false,
     pack: [],
     carrier: [],
     user: null,
@@ -40,13 +45,15 @@ class Profile extends Component {
   };
 
   updateDelivered = packId => {
-    if (prompt("Did you complete the delivery?") === "yes") {
-      API.updateDelivered(packId)
-        .then(res => { console.log(res.data); this.componentDidMount() });
-    }
+    // if (prompt("Did you complete the delivery?") === "yes") {
+    API.updateDelivered(packId)
+      .then(res => { console.log(res.data); this.componentDidMount() })
+      .then(res => this.setState({ smShow: false }))
+    // }
   }
 
   render() {
+    let smClose = () => this.setState({ smShow: false });
     return (
       <div>
         {/* <Nav msg={this.state.msg}/> */}
@@ -93,10 +100,49 @@ class Profile extends Component {
                           {/* <div className="status">Delivered: {pack.isDelivered ? <span>yes</span> : <span>no</span>}</div> */}
                           {/* <div className="status3">carrier: me</div> */}
                           {/* <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} /> */}
-                          <button onClick={() => this.updateDelivered(pack._id)} className={pack.isDelivered ? "btn btn-secondary text-light fadeBtn" : "btn btn-success text-light fadeBtn"} disabled={pack.isDelivered}>
+                          {/* <button onClick={() => this.updateDelivered(pack._id)} className={pack.isDelivered ? "btn btn-secondary text-light fadeBtn" : "btn btn-success text-light fadeBtn"} disabled={pack.isDelivered}>
                             {pack.isDelivered ? <span> Delivered </span> : <span>Confirm Delivery</span>}
-                          </button>
+                          </button> */}
 
+                          {/* ====================== update delivered btn ====================== */}
+                          {/* ===== react bootstrap modal (click to pop-up window) ===== */}
+                          <div className="">
+                            <ButtonToolbar>
+                              <Button onClick={() => this.setState({ smShow: true })} className={pack.isDelivered ? "btn btn-secondary text-light fadeBtn" : "btn btn-success text-light fadeBtn"} disabled={pack.isDelivered}>
+                                {pack.isDelivered ? <span> Delivered </span> : <span>Confirm Delivery</span>}
+                              </Button>
+                              <Modal
+                                size="sm"
+                                show={this.state.smShow}
+                                onHide={smClose}
+                                aria-labelledby="example-modal-sizes-title-sm"
+                              >
+                                <Modal.Header closeButton>
+                                  <Modal.Title id="example-modal-sizes-title-sm">
+                                    Carrier Delivery
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                  Have you delivered this pack?
+                                  </Modal.Body>
+                                <Modal.Footer>
+                                  <FormBtn
+                                    onClick={() => this.updateDelivered(pack._id)}
+                                    btncolor="btn btn-success"
+                                  >
+                                    Yes
+                                  </FormBtn>
+                                  <FormBtn
+                                    onClick={() => this.setState({ smShow: false })}
+                                    btncolor="btn btn-secondary"
+                                  >
+                                    No
+                                  </FormBtn>
+                                </Modal.Footer>
+                              </Modal>
+                            </ButtonToolbar>
+                          </div>
+                          {/* ==========================done============================ */}
 
                           <h4>{pack.title}</h4>
                           <div>From: {pack.from} - To: {pack.to}</div>
