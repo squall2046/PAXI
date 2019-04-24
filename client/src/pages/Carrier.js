@@ -13,7 +13,7 @@ import Map from './map'
 // import InfoWindow from './InfoWindow'
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import { PickBtn } from "../components/Btn";
+// import { PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Form, Input, FormBtn } from "../components/Form";
