@@ -96,7 +96,6 @@ class Carrier extends Component {
     return (
       <div>
         <Nav />
-
         <Container fluid>
           <div className="proContainer">
             <Row>
@@ -118,17 +117,22 @@ class Carrier extends Component {
                             <div>Package weight: {pack.weight}</div>
                             <div>Shipping fee: $ {pack.fee}</div>
                             <div>Description: {pack.description}</div>
-                            <img className="col-12 mx-auto img" alt="pack-img" src={pack.image ? pack.image : require('./pack.png')} />
+                            <img className="col-12 mx-auto img" alt="" src={pack.image ? pack.image : require('./pack.png')} />
                             {/* <MapBtn onClick={() => this.mapBtnSubmit(pack._id)} /> */}
                             {/* <MsgBtn onClick={() => this.msgBtnSubmit(pack._id)} /> */}
                             {/* <PickBtn onClick={() => this.pickBtnSubmit(pack._id)} /> */}
+
 
                             {/* ====================== pick it btn ====================== */}
                             {/* ===== react bootstrap modal (click to pop-up window) ===== */}
                             <div className="pick-btn">
                               <ButtonToolbar>
-                                <Button onClick={() => this.setState({ smShow: true })}>
-                                  Pick it
+                                <Button
+                                  variant="success"
+                                  onClick={() => this.setState({ smShow: true })}
+                                  disabled={(this.state.userId === pack.userId)}
+                                >
+                                  <span> Pick it </span>
                                 </Button>
                                 <Modal
                                   size="sm"
@@ -173,16 +177,19 @@ class Carrier extends Component {
                                     this.setState({
                                       modalShow: true,
                                       currentpackid: pack._id,
-                                      currentpacktitle: pack.title
+                                      currentpacktitle: pack.title,
                                     })
                                   }
-                                > Send Msg
-                              </Button>
+                                  disabled={(this.state.userId === pack.userId)}
+                                >
+                                  <span> Send Msg </span>
+                                </Button>
                                 <PopUp
                                   show={this.state.modalShow}
                                   onHide={modalClose}
                                   packid={this.state.currentpackid}
                                   packtitle={this.state.currentpacktitle}
+                                  carrierId={this.state.userId}
                                 />
                               </ButtonToolbar>
                             </div>
@@ -216,7 +223,7 @@ class Carrier extends Component {
                       placeholder="End"
                     />
 
-                    <FormBtn onClick={this.searchMap} btncolor="btn btn-sm btn-dark" >
+                    <FormBtn onClick={() => this.searchMap} btncolor="btn btn-sm btn-dark" >
                       <i className="text-light fas fa-globe-americas"> Search</i>
                     </FormBtn>
                   </Form>

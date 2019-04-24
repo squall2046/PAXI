@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
-import { Button, Modal } from 'react-bootstrap';
+import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
+import PopUp from "../../pages/PopUp";
 import { List, ListItem } from "../List";
 import API from "../../utils/API";
 import "./style.css";
 
 class Nav extends Component {
   state = {
+    show: false,
+    modalShow: false,
     user: null,
     message: [],
     redirectTo: null,
-    show: false,
   };
 
   handleShow = () => {
@@ -54,6 +56,7 @@ class Nav extends Component {
   }
 
   render(props) {
+    let modalClose = () => this.setState({ modalShow: false });
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     }
@@ -114,6 +117,33 @@ class Nav extends Component {
                         <ListItem key={index}>
                           <span>&#9993; {message.title} </span>
                           <span className="msgSize"> &#34; {message.content} &#34; </span>
+                          <div className="msgSize"> by <i>{message.carrierId}</i> </div>
+
+
+                          {/* ====================== reply msg btn ====================== */}
+                          {/* ===== react bootstrap modal (click to pop-up window) ===== */}
+                          <div className="reply-btn">
+                            <ButtonToolbar>
+                              <Button
+                                variant="danger btn-sm"
+                                onClick={() =>
+                                  this.setState({
+                                    modalShow: true,
+                                  })
+                                }
+                              > reply
+                              </Button>
+                              <PopUp
+                                show={this.state.modalShow}
+                                onHide={modalClose}
+                                packid={message.packid}
+                                packtitle={message.title}
+                                carrierId={message.carrierId}
+                              />
+                            </ButtonToolbar>
+                          </div>
+                          {/* ==========================done============================ */}
+
                         </ListItem>
                       ))
                     }

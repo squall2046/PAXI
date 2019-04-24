@@ -13,7 +13,7 @@ class PopUp extends React.Component {
     title: null,
     content: null,
     packid: null,
-    // msgSender: this.props.senderid,
+    carrierId: this.props.carrierId,
   };
 
   handleInputChange = event => {
@@ -31,10 +31,8 @@ class PopUp extends React.Component {
   }
 
   createMsgBtn = () => {
-    // const { title, content, packid, msgSender } = this.state;
-    // const msgInfo = { title, content, packid, msgSender };
-    const { title, content, packid } = this.state;
-    const msgInfo = { title, content, packid };
+    const { title, content, packid, carrierId } = this.state;
+    const msgInfo = { title, content, packid, carrierId };
     // console.log("==== msgInfo ====: ", msgInfo)
     API.createMsgBtn(msgInfo)
       .then(res => console.log("response to popup message: ", res.data))

@@ -47,7 +47,6 @@ class Customer extends Component {
     API.createPackBtn(this.state)
       .then(res => console.log("response to customer: ", res.data))
       // .then(res => alert(`Your ${res.data.title} has posted!`))
-      .then(res => alert(`Your pack has posted!`))
       .then(res => this.setState({ redirectTo: "/carrier" }))
       // .then(res => window.location.replace("/carrier"))
       .catch(err => console.log(err));
@@ -144,7 +143,7 @@ class Customer extends Component {
                     <FormBtn
                       btncolor="btn btn-danger"
                       disabled={!(this.state.title && this.state.size && this.state.weight && this.state.from && this.state.to && this.state.receiver && this.state.fee)}
-                      onClick={this.createPackBtn}
+                      onClick={() => this.createPackBtn}
                     >
                       <i className="fas fa-shipping-fast"> Submit</i>
                     </FormBtn>

@@ -19,6 +19,13 @@
  font-size: 90%
 }
 
+.reply-btn {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  margin: 0
+}
+
 h3 {
     position: absolute;
     top: 5px;
