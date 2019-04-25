@@ -56,7 +56,7 @@ class Profile extends Component {
     return (
       <div>
         {/* <Nav msg={this.state.msg}/> */}
-        <Nav />
+        <Nav page="Profile" />
         <Container fluid>
           <div className="proContainer">
             <Row>

@@ -79,7 +79,7 @@ class Nav extends Component {
           </ul>
         </div>
         <div className="mx-auto order-0">
-          <span className="mr-auto text-light">Welcome </span>
+          <span className="mr-auto text-light">{this.props.page ? this.props.page : "Welcome"} </span>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
             <span className="navbar-toggler-icon"></span>
           </button>

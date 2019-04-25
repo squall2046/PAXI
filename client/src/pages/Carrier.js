@@ -95,7 +95,7 @@ class Carrier extends Component {
     let smClose = () => this.setState({ smShow: false });
     return (
       <div>
-        <Nav />
+        <Nav  page="Carrier" />
         <Container fluid>
           <div className="proContainer">
             <Row>
