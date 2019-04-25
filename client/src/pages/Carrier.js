@@ -78,11 +78,11 @@ class Carrier extends Component {
     // }
   }
 
-  mapBtnSubmit = packId => {
-    API.mapBtnSubmit(packId)
-    // .then(res => this.loadBooks())
-    // .catch(err => console.log(err));
-  }
+  // mapBtnSubmit = packId => {
+  //   API.mapBtnSubmit(packId)
+  //   // .then(res => this.loadBooks())
+  //   // .catch(err => console.log(err));
+  // }
 
   // searchMap() {
   // API.mapBtnSubmit(packId)
@@ -205,8 +205,20 @@ class Carrier extends Component {
               </Col>
               <Col size="md-6">
                 <div className="mapContainer">
-                  <Form>
-                    {/* <h5></h5> */}
+                  <div className="h3">Map Search</div>
+                  {/* // // // // // // // //  */}
+                  <div>
+                    <Map
+                      google={this.props.google}
+                      center={{ lat: 37.5759, lng: -77.5410 }}
+                      height='300px'
+                      zoom={15}
+                    />
+                  </div>
+                  {/* // // // // // // // //  */}
+
+                  {/* <Form>
+                    <h5></h5>
                     <span>Search Start City</span>
                     <Input
                       name="start"
@@ -226,26 +238,7 @@ class Carrier extends Component {
                     <FormBtn onClick={() => this.searchMap()} btncolor="btn btn-sm btn-dark" >
                       <i className="text-light fas fa-globe-americas"> Search</i>
                     </FormBtn>
-                  </Form>
-                  {/* // // // // // // // //  */}
-                  <Map
-                    id="myMap"
-                    options={{
-                      center: { lat: 37.537941, lng: -77.434769 },
-                      zoom: 8
-                    }}
-                    onMapLoad={map => {
-                      const marker = new window.google.maps.Marker({
-                        position: { lat: 37.537941, lng: -77.434769 },
-                        map: map,
-                        title: 'Richmond VA'
-                      });
-                      marker.addListener('click', e => {
-                        this.createInfoWindow(e, map)
-                      })
-                    }}
-                  />
-                  {/* // // // // // // // //  */}
+                  </Form> */}
                 </div>
               </Col>
             </Row>
