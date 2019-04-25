@@ -226,15 +226,27 @@ class Map extends Component {
             />
             <Marker />
             {/* For Auto complete Search Box */}
-            
             <Autocomplete
               style={{
                 width: '100%',
                 height: '40px',
                 paddingLeft: '16px',
                 marginTop: '2px',
-                marginBottom: '100px'
               }}
+              placeholder="Enter Start ZIP"
+              onPlaceSelected={this.onPlaceSelected}
+              types={['(regions)']}
+            />
+
+            <Autocomplete
+              style={{
+                width: '100%',
+                height: '40px',
+                paddingLeft: '16px',
+                marginTop: '2px',
+                marginBottom: '10px'
+              }}
+              placeholder="Enter Destination ZIP"
               onPlaceSelected={this.onPlaceSelected}
               types={['(regions)']}
             />
@@ -246,7 +258,7 @@ class Map extends Component {
     if (this.props.center.lat !== undefined) {
       map = <div>
         <div>
-					{/* <div className="form-group">
+          {/* <div className="form-group">
 						<label htmlFor="">City</label>
 						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
 					</div>
@@ -258,11 +270,11 @@ class Map extends Component {
 						<label htmlFor="">State</label>
 						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
 					</div> */}
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
-					</div>
-				</div>
+          <div className="form-group">
+            <label htmlFor="">Address</label>
+            <input type="text" name="address" className="form-control" onChange={this.onChange} readOnly="readOnly" value={this.state.address} />
+          </div>
+        </div>
         <AsyncMap
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjoSsxAf-IKE0ALE9n8poJ1kJ9pq622e4&libraries=places"
           loadingElement={
