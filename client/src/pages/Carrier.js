@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { render } from 'react-dom';
 
 // install react-bootstrap npm,
 // for the bootstrap modal, we will import two parts:
@@ -9,19 +8,14 @@ import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 import PopUp from "./PopUp";
 // codes in PopUp are also from react bootstrap.
 
-import Map from './map'
-// import InfoWindow from './InfoWindow'
 import API from "../utils/API";
 import Nav from "../components/Nav";
-// import { PickBtn } from "../components/Btn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Form, Input, FormBtn } from "../components/Form";
+import { FormBtn } from "../components/Form";
 import "./style.css";
-// import { Link } from "react-router-dom";
-// import { relative } from "path";
 
-
+import ReactGoogleMaps from "./ReactGoogleMaps"
 class Carrier extends Component {
   state = {
     modalShow: false,
@@ -57,7 +51,6 @@ class Carrier extends Component {
     });
   };
 
-
   findUnpicked() {
     API.findUnpicked()
       .then(res => {
@@ -77,18 +70,6 @@ class Carrier extends Component {
     // 刷新 mount 中全部内容!!!
     // }
   }
-
-  // mapBtnSubmit = packId => {
-  //   API.mapBtnSubmit(packId)
-  //   // .then(res => this.loadBooks())
-  //   // .catch(err => console.log(err));
-  // }
-
-  // searchMap() {
-  // API.mapBtnSubmit(packId)
-  // .then(res => this.loadBooks())
-  // .catch(err => console.log(err));
-  // }
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
@@ -189,7 +170,8 @@ class Carrier extends Component {
                                   onHide={modalClose}
                                   packid={this.state.currentpackid}
                                   packtitle={this.state.currentpacktitle}
-                                  carrierId={this.state.userId}
+                                  userid={pack.userId}
+                                  carrierid={this.state.userId}
                                 />
                               </ButtonToolbar>
                             </div>
@@ -207,38 +189,8 @@ class Carrier extends Component {
                 <div className="mapContainer">
                   <div className="h3">Map Search</div>
                   {/* // // // // // // // //  */}
-                  <div>
-                    <Map
-                      google={this.props.google}
-                      center={{ lat: 37.5759, lng: -77.5410 }}
-                      height='300px'
-                      zoom={15}
-                    />
-                  </div>
+                    <ReactGoogleMaps/>
                   {/* // // // // // // // //  */}
-
-                  {/* <Form>
-                    <h5></h5>
-                    <span>Search Start City</span>
-                    <Input
-                      name="start"
-                      value={this.state.mapBtnA}
-                      onChange={this.handleInputChange}
-                      placeholder="Start"
-                    />
-
-                    <span>Search Destination</span>
-                    <Input
-                      name="end"
-                      value={this.state.mapBtnB}
-                      onChange={this.handleInputChange}
-                      placeholder="End"
-                    />
-
-                    <FormBtn onClick={() => this.searchMap()} btncolor="btn btn-sm btn-dark" >
-                      <i className="text-light fas fa-globe-americas"> Search</i>
-                    </FormBtn>
-                  </Form> */}
                 </div>
               </Col>
             </Row>

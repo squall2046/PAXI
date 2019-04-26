@@ -44,6 +44,14 @@ export default {
     return axios.post("/api/message/create", msgInfo);
   },
 
+  replyMsgBtn: (loginid, msgInfo) => {
+    return axios.post("/api/message/reply/" + loginid, msgInfo);
+  },
+
+  removeMsgBtn: (msgId) => {
+    return axios.delete("/api/message/remove/" + msgId);
+  },
+
   findAllMsg: (userId) => {
     return axios.get("/api/message/find/" + userId);
   },

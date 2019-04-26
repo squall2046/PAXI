@@ -85,10 +85,38 @@ module.exports = {
 
   createMsgBtn: function (req, res) {
     db.Message.create(req.body)
-      .then(dbModel => {
-        // console.log("\n new message created: ", dbModel, "\n");
-        return db.User.findOneAndUpdate({ pack: dbModel.packid }, { $push: { message: dbModel._id } }, { new: true });
+      .then(newMsg => {
+        // console.log("\n new message created: ", newMsg, "\n");
+        return db.User.findOneAndUpdate({ _id: req.body.userid }, { $push: { message: newMsg._id } }, { new: true });
       })
+      .then(dbUser => {
+        // console.log("\n response the user info: ", dbUser);
+        res.json(dbUser);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+
+  replyMsgBtn: function (req, res) {
+    db.Message.create(req.body)
+      .then(reMsg => {
+        console.log("\n new message created: ", reMsg, "\n");
+        if (req.params.loginid === reMsg.userid) {
+          return db.User.findOneAndUpdate({ _id: reMsg.carrierid }, { $push: { message: reMsg._id } }, { new: true });
+        }
+        else if (req.params.loginid === reMsg.carrierid) {
+          return db.User.findOneAndUpdate({ _id: reMsg.userid }, { $push: { message: reMsg._id } }, { new: true });
+        }
+      })
+      .then(dbUser => {
+        // console.log("\n response the user info: ", dbUser);
+        res.json(dbUser);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+
+  removeMsgBtn: function (req, res) {
+    console.log("\n message: ", "\n");
+    db.Message.deleteOne({ _id: req.params.msgId })
       .then(dbUser => {
         // console.log("\n response the user info: ", dbUser);
         res.json(dbUser);

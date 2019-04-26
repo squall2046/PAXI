@@ -22,8 +22,16 @@
 .reply-btn {
   position: absolute;
   top: 15px;
-  right: 5px;
+  right: 32px;
   margin: 0
+}
+
+.remove-btn {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  margin: 0;
+  border-radius: 0 5px 5px 0 !important;
 }
 
 h3 {

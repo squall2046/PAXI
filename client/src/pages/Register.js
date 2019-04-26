@@ -224,7 +224,7 @@ class Register extends Component {
               </div>
 
               <button className="btn btn-primary btn-block" onClick={this.userRegister}>
-                <i class="fas fa-user-plus"> Submit</i>
+                <i className="fas fa-user-plus"> Submit</i>
               </button>
               {/* </form> */}
               <p className="lead mt-4">Have An Account? <Link to="/login"><span className="">Login</span></Link></p>

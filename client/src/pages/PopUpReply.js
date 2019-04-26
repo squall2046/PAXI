@@ -4,7 +4,7 @@ import { Form, Input, FormBtn, Textarea } from "../components/Form";
 import API from "../utils/API";
 import "./style.css";
 
-class PopUp extends React.Component {
+class PopUpReply extends React.Component {
   // this.handleShow = this.handleShow.bind(this);
   // this.handleClose = this.handleClose.bind(this);
 
@@ -26,16 +26,16 @@ class PopUp extends React.Component {
 
   onClickCombine = () => {
     this.setState({ packid: this.props.packid, userid: this.props.userid, carrierid: this.props.carrierid },
-      () => { this.createMsgBtn() },
+      () => { console.log(this.state); this.replyMsgBtn() },
     );
     this.props.onHide()
   }
 
-  createMsgBtn = () => {
+  replyMsgBtn = () => {
     const { title, content, packid, userid, carrierid } = this.state;
     const msgInfo = { title, content, packid, userid, carrierid };
-    console.log("==== msgInfo ====: ", msgInfo)
-    API.createMsgBtn(msgInfo)
+    // console.log("==== msgInfo ====: ", msgInfo)
+    API.replyMsgBtn(this.props.loginid, msgInfo)
       .then(res => console.log("response to popup message: ", res.data))
       // .then(res => alert(`Your message has sent!`))
       .catch(err => console.log(err));
@@ -97,4 +97,4 @@ class PopUp extends React.Component {
   }
 }
 
-export default PopUp;
+export default PopUpReply;

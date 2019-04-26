@@ -37,6 +37,16 @@ router
 .route("/message/create")
 .post(Controller.createMsgBtn);
 
+// user reply messages
+router
+.route("/message/reply/:loginid")
+.post(Controller.replyMsgBtn);
+
+// user remove messages
+router
+.route("/message/remove/:msgId")
+.delete(Controller.removeMsgBtn);
+
 // user show messages
 router
   .route("/message/find/:userId")

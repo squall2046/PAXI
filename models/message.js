@@ -5,7 +5,8 @@ const packSchema = new Schema({
   title: { type: String },
   content: { type: String },
   packid: { type: String },
-  carrierId: { type: String },
+  userid: { type: String },
+  carrierid: { type: String },
 });
 
 const Message = mongoose.model("Message", packSchema);
