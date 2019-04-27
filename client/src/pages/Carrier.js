@@ -16,6 +16,7 @@ import { FormBtn } from "../components/Form";
 import "./style.css";
 
 import ReactGoogleMaps from "./ReactGoogleMaps"
+import Demo from "./Location"
 class Carrier extends Component {
   state = {
     modalShow: false,
@@ -76,7 +77,7 @@ class Carrier extends Component {
     let smClose = () => this.setState({ smShow: false });
     return (
       <div>
-        <Nav  page="Carrier" />
+        <Nav page="Carrier" />
         <Container fluid>
           <div className="proContainer">
             <Row>
@@ -189,7 +190,8 @@ class Carrier extends Component {
                 <div className="mapContainer">
                   <div className="h3">Map Search</div>
                   {/* // // // // // // // //  */}
-                    <ReactGoogleMaps/>
+                  <Demo />
+                  <ReactGoogleMaps />
                   {/* // // // // // // // //  */}
                 </div>
               </Col>
