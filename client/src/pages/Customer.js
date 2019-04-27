@@ -57,7 +57,7 @@ class Customer extends Component {
     //   return <Redirect to={{ pathname: this.state.redirectTo }} />
     // }
     return (
-      <div>
+      <div className="ship-pg">
         <Nav page="Shipping" />
         {this.state.redirectTo ? <Redirect to={{ pathname: this.state.redirectTo }} /> : console.log("no redirect")}
         <Container fluid>

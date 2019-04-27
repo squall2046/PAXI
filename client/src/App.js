@@ -43,7 +43,6 @@ class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/customer" component={Customer} />
           <Route exact path="/carrier" component={Carrier} />
-          <Route exact path="/status" component={Status} />
           <Redirect to={{ pathname: '/profile' }} />
           {/* <Route component={Profile} /> */}
           {/* <Route path="/profile/:id" component={Profile} /> */}
@@ -62,7 +61,6 @@ class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/customer" component={Customer} />
           <Route exact path="/carrier" component={Carrier} />
-          <Route exact path="/status" component={Status} />
           <Redirect to={{ pathname: '/' }} />
         </Switch>
       </div>

@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const multer = require("multer");
+// const multer = require("multer");
 const morgan = require("morgan");
 const app = express();
 const path = require('path');
@@ -40,11 +40,10 @@ app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connect flash
-app.use(flash());
-
-//log every request to the console
-app.use(morgan("dev"));
+// socket.io
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+io.on('connection', () => { require("./socket.js") });
 
 // Express Routes
 // const routes = require("./routes");
@@ -55,6 +54,12 @@ app.use('/api', require('./routes/api.js'));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
+
+// Connect flash
+app.use(flash());
+
+//log every request to the console
+app.use(morgan("dev"));
 
 // Start the API server
 const PORT = process.env.PORT || 3001;
