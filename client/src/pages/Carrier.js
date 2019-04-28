@@ -15,8 +15,8 @@ import { List, ListItem } from "../components/List";
 import { FormBtn } from "../components/Form";
 import "./style.css";
 
-import ReactGoogleMaps from "./ReactGoogleMaps"
-import Demo from "./Location"
+import ReactGoogleMaps from "./ReactGoogleMaps";
+
 class Carrier extends Component {
   state = {
     modalShow: false,
@@ -28,7 +28,29 @@ class Carrier extends Component {
     mapBtnB: null,
     currentpackid: null,
     currentpacktitle: null,
+
+    lat: null,
+    lng: null
   };
+
+  // ======== html5 built-in getGeoLocation() to get current location ========
+  componentWillUpdate() {
+    this.getGeoLocation()
+  };
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          this.setState({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          })
+        }
+      )
+      console.log("current location: \n", this.state.lat, this.state.lng)
+    }
+  };
+  // =========================================================================
 
   componentDidMount() {
     const userInfo = sessionStorage.getItem("user");
@@ -71,6 +93,7 @@ class Carrier extends Component {
     // 刷新 mount 中全部内容!!!
     // }
   }
+
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
@@ -190,8 +213,11 @@ class Carrier extends Component {
                 <div className="mapContainer">
                   <div className="h3">Map Search</div>
                   {/* // // // // // // // //  */}
-                  <Demo />
-                  <ReactGoogleMaps />
+                  <ReactGoogleMaps
+                    // key={}
+                    lat={this.state.lat}
+                    lng={this.state.lng}
+                  />
                   {/* // // // // // // // //  */}
                 </div>
               </Col>
