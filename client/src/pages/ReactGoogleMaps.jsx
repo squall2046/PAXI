@@ -53,22 +53,6 @@ const ReactGoogleMaps = compose(
         },
       })
     },
-    // componentDidMount() {
-    // const DirectionsService = new window.google.maps.DirectionsService();
-    // DirectionsService.route({
-    //   origin: new window.google.maps.LatLng(this.state.aLat, this.state.aLng),
-    //   destination: new window.google.maps.LatLng(this.state.bLat, this.state.bLng),
-    //   travelMode: window.google.maps.TravelMode.DRIVING,
-    // }, (result, status) => {
-    //   if (status === window.google.maps.DirectionsStatus.OK) {
-    //     this.setState({
-    //       directions: result,
-    //     });
-    //   } else {
-    //     console.log(`no fetching directions yet`, result);
-    //   }
-    // });
-    // }
   })
 )(props =>
   <GoogleMap
@@ -114,9 +98,5 @@ const ReactGoogleMaps = compose(
 );
 
 const enhance = _.identity;
-
-// const ReactGoogleMaps = (props) => [
-//   <MapWithADirectionsRenderer key="map" />,
-// ];
 
 export default enhance(ReactGoogleMaps);
