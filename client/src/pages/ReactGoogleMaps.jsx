@@ -28,8 +28,6 @@ const ReactGoogleMaps = compose(
           const places = refs.searchBox.getPlaces();
           this.setState({
             places,
-            // aLat: "37.5759",
-            // aLng: "-77.5410",
             aLat: this.props.lat,
             aLng: this.props.lng,
             bLat: places[0].geometry.location.lat(),
