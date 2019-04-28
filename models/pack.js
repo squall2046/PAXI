@@ -14,13 +14,9 @@ const packSchema = new Schema({
   userId: { type: String },
   carrierId: { type: String },
 
-  createdBy: { type: String },
-  carriedBy: { type: String },
   isPicked: { type: Boolean, default: false },
   isDelivered: { type: Boolean, default: false },
   date: { type: Date, default: Date.now },
-
-  // message: [{ type: Schema.Types.ObjectId, ref: "Message" }]
 });
 
 const Pack = mongoose.model("Pack", packSchema);
