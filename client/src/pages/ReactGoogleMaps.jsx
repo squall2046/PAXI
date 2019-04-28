@@ -4,7 +4,7 @@ import { compose, withProps, lifecycle } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
 
-const MapWithADirectionsRenderer = compose(
+const ReactGoogleMaps = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDjoSsxAf-IKE0ALE9n8poJ1kJ9pq622e4&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
@@ -24,11 +24,14 @@ const MapWithADirectionsRenderer = compose(
           refs.searchBox = ref;
         },
         onPlacesChanged: () => {
+          console.log(this.props)
           const places = refs.searchBox.getPlaces();
           this.setState({
             places,
-            aLat: "37.5759",
-            aLng: "-77.5410",
+            // aLat: "37.5759",
+            // aLng: "-77.5410",
+            aLat: this.props.lat,
+            aLng: this.props.lng,
             bLat: places[0].geometry.location.lat(),
             bLng: places[0].geometry.location.lng(),
           });
@@ -114,8 +117,8 @@ const MapWithADirectionsRenderer = compose(
 
 const enhance = _.identity;
 
-const ReactGoogleMaps = () => [
-  <MapWithADirectionsRenderer key="map" />,
-];
+// const ReactGoogleMaps = (props) => [
+//   <MapWithADirectionsRenderer key="map" />,
+// ];
 
 export default enhance(ReactGoogleMaps);
