@@ -8,6 +8,10 @@ const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
+// Connect flash
+app.use(flash());
+//log every request to the console
+app.use(morgan("dev"));
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
@@ -54,12 +58,6 @@ app.use('/api', require('./routes/api.js'));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
-
-// Connect flash
-app.use(flash());
-
-//log every request to the console
-app.use(morgan("dev"));
 
 // Start the API server
 const PORT = process.env.PORT || 3001;
