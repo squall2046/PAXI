@@ -83,10 +83,10 @@ class Carrier extends Component {
       .catch(err => console.log(err));
   };
 
-  pickBtnSubmit = packId => {
+  pickBtnSubmit() {
     // if (prompt("Do you want to carry this pack? Input 'yes' or 'no'") === "yes") {
-    // console.log("carrier req userId:", this.state.userId, "\n carrier req packId:", packId)
-    API.updateCarrier(this.state.userId, packId)
+    console.log("carrier req userId:", this.state.userId, "\n carrier req packId:", this.state.currentpackid)
+    API.updateCarrier(this.state.userId, this.state.currentpackid)
       .then(res => { console.log(res.data); this.componentDidMount() })
       .then(res => this.setState({ smShow: false }))
     // .catch(err => console.log(err));
@@ -134,7 +134,13 @@ class Carrier extends Component {
                               <ButtonToolbar>
                                 <Button
                                   variant="success"
-                                  onClick={() => this.setState({ smShow: true })}
+                                  // onClick={() => this.setState({ smShow: true })}
+                                  onClick={() =>
+                                    this.setState({
+                                      smShow: true,
+                                      currentpackid: pack._id,
+                                    })
+                                  }
                                   disabled={(this.state.userId === pack.userId)}
                                 >
                                   <span> Pick it </span>
@@ -155,7 +161,7 @@ class Carrier extends Component {
                                   </Modal.Body>
                                   <Modal.Footer>
                                     <FormBtn
-                                      onClick={() => this.pickBtnSubmit(pack._id)}
+                                      onClick={() => this.pickBtnSubmit()}
                                       btncolor="btn btn-success"
                                     >
                                       Yes

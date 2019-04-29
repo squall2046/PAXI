@@ -24,7 +24,7 @@ module.exports = {
     db.User.findById(req.params.userId)
       .populate("pack")
       .populate("carrier")
-      .sort({ date: -1 })
+      // .sort({ date: -1 })
       .then(dbModel => {
         // console.log("\n find user's packs from mongo: ", dbModel.pack);
         // console.log( "\n find user's carried from mongo: ", dbModel.carrier);
@@ -35,14 +35,14 @@ module.exports = {
 
   findUnpicked: function (req, res) {
     db.Pack.find({ isPicked: false })
-      .sort({ date: -1 })
+      // .sort({ date: -1 })
       .then(dbModel => { res.json(dbModel); console.log("find unpicked from mongo", "dbModel") })
       .catch(err => res.status(422).json(err));
   },
 
   findAllPacks: function (req, res) {
     db.Pack.find()
-      .sort({ date: -1 })
+      // .sort({ date: -1 })
       .then(dbModel => { res.json(dbModel); console.log("find all from mongo", "dbModel") })
       .catch(err => res.status(422).json(err));
   },
