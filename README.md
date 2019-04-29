@@ -1,4 +1,7 @@
 # PAXI
+```
+PAXI allows users to post items/packages that they need delivered quicker than the post-office/UPS/Fed-Ex may be able to offer.  PAXI connects the shipper and the driver to complete the shipment.
+```
 
 #### 📗Technologies
 - [x] MongoDB Mongoose
