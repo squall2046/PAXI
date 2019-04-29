@@ -10,7 +10,7 @@ module.exports = {
         // console.log("\n created new pack: ", dbModel, "\n");
         // console.log("===== new pack id: ", dbModel._id);
         // console.log("===== new pack belong to user: ", dbModel.userId);
-        return db.User.findOneAndUpdate({ _id: dbModel.userId }, { $push: { pack: {$each: [dbModel._id], $position: 0 } } }, { new: true });
+        return db.User.findOneAndUpdate({ _id: dbModel.userId }, { $push: { pack: dbModel._id } }, { new: true });
       })
       .then(dbUser => {
         // console.log("\n response the user info: ", dbUser);
