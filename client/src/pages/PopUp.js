@@ -25,6 +25,7 @@ class PopUp extends React.Component {
   };
 
   onClickCombine = () => {
+    console.log("onClickCombine", this.props)
     this.setState({ packid: this.props.packid, userid: this.props.userid, carrierid: this.props.carrierid },
       () => { this.createMsgBtn() },
     );

@@ -28,15 +28,16 @@ class Carrier extends Component {
     mapBtnB: null,
     currentpackid: null,
     currentpacktitle: null,
+    currentpackuserid: null,
 
     lat: null,
     lng: null
   };
 
   // ======== html5 built-in getGeoLocation() to get current location ========
-  componentWillUpdate() {
-    this.getGeoLocation()
-  };
+  // componentWillUpdate() {
+  //   this.getGeoLocation()
+  // };
   getGeoLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -53,6 +54,8 @@ class Carrier extends Component {
   // =========================================================================
 
   componentDidMount() {
+    this.getGeoLocation();
+
     const userInfo = sessionStorage.getItem("user");
     const userObj = JSON.parse(userInfo);
     if (userInfo) {
@@ -189,6 +192,7 @@ class Carrier extends Component {
                                       modalShow: true,
                                       currentpackid: pack._id,
                                       currentpacktitle: pack.title,
+                                      currentpackuserid:pack.userId
                                     })
                                   }
                                   disabled={(this.state.userId === pack.userId)}
@@ -200,7 +204,7 @@ class Carrier extends Component {
                                   onHide={modalClose}
                                   packid={this.state.currentpackid}
                                   packtitle={this.state.currentpacktitle}
-                                  userid={pack.userId}
+                                  userid={this.state.currentpackuserid}
                                   carrierid={this.state.userId}
                                 />
                               </ButtonToolbar>
