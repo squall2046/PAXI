@@ -72,13 +72,14 @@ class Profile extends Component {
                           {pack.carrierId ? <div className="status3">carrier ID: {pack.carrierId} </div> : <div className="status3">Waiting for Carrier</div>}
 
                           <h4>{pack.title}</h4>
-                          <div>From: {pack.from} - To: {pack.to}</div>
+                          <div>From: {pack.from}</div>
+                          <div>To: {pack.to}</div>
                           <div>Receiver: {pack.receiver}</div>
                           <div>Package size: {pack.size}</div>
                           <div>Package weight: {pack.weight}</div>
                           <div>Shipping fee: $ {pack.fee}</div>
                           <div>Description: {pack.description}</div>
-                          <div>Issue (UTC): {pack.date}</div>
+                          <div>Issue Date(UTC): {pack.date}</div>
                           <img className="col-12 mx-auto img" alt="" src={pack.image ? pack.image : require('./pack.png')} />
                         </ListItem>
                       ))

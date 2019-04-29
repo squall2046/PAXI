@@ -24,7 +24,6 @@ module.exports = {
     db.User.findById(req.params.userId)
       .populate("pack")
       .populate("carrier")
-      .sort({ date: -1 })
       .then(dbModel => {
         // console.log("\n find user's packs from mongo: ", dbModel.pack);
         // console.log( "\n find user's carried from mongo: ", dbModel.carrier);
