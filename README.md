@@ -1,4 +1,4 @@
-# 🚛PAXI
+# PAXI
 
 🚛PAXI allows users to post items/packages that they need delivered quicker than the post-office/UPS/Fed-Ex may be able to offer.  PAXI connects the shipper and the driver to complete the shipment.
 
@@ -19,8 +19,10 @@
 * open browser and load http://localhost:3000/
 
 #### 📬 Author
-Isaac Wu, 
+Isaac Wu,
+
 Abdullah Alamri,
+
 James Lamb
 <!-- * [Isaac Wu](https://github.com/squall2046)
 * [App demo](https://googlebooks-iw.herokuapp.com/) -->
