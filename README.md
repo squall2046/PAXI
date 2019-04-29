@@ -5,8 +5,8 @@
 ### Profile Page
 ```
 This profile page displays current user's Shipping Account (left side), Carrier Account (right side).
-1. Shipping Account allow user to track his/her shipping package status by if Picked/Delivered, and carrier info.
-2. Carrier Account allow carrier to confirm delivered when delivery complete.
+-- Shipping Account allow user to track his/her shipping package status by if Picked/Delivered, and carrier info.
+-- Carrier Account allow carrier to confirm delivered when delivery complete.
 ```
 ![concert](./client/public/Snipaste_2019-04-29_00-55-23.png)
 
