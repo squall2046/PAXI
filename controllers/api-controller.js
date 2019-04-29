@@ -10,7 +10,7 @@ module.exports = {
         // console.log("\n created new pack: ", dbModel, "\n");
         // console.log("===== new pack id: ", dbModel._id);
         // console.log("===== new pack belong to user: ", dbModel.userId);
-        return db.User.findOneAndUpdate({ _id: dbModel.userId }, { $push: { pack: dbModel._id } }, { new: true });
+        return db.User.findOneAndUpdate({ _id: dbModel.userId }, { $push: { pack: {$each: [dbModel._id], $position: 0 } } }, { new: true });
       })
       .then(dbUser => {
         // console.log("\n response the user info: ", dbUser);
@@ -24,6 +24,7 @@ module.exports = {
     db.User.findById(req.params.userId)
       .populate("pack")
       .populate("carrier")
+      .sort({ date: -1 })
       .then(dbModel => {
         // console.log("\n find user's packs from mongo: ", dbModel.pack);
         // console.log( "\n find user's carried from mongo: ", dbModel.carrier);
