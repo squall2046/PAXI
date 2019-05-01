@@ -52,7 +52,6 @@ User can reply or delete messages all the time.
 * open browser and load http://localhost:3000/
 
 #### 📬 Author
-Isaac Wu
 
 [Isaac Wu](https://github.com/squall2046)
 * [App demo](https://paxi-express.herokuapp.com/)
