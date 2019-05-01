@@ -1,7 +1,7 @@
 # 📦 PAXI
 
 #### PAXI is a new mode package delivery app. Anytime, Anywhere, and Any price are three main differences from the traditional express business such as UPS or DHL
-1.	Faster. Normally, the shipping company do one to two shippment per day, and the shipping process will last for 2 to 7 busniess days. PAXI ships at anytime you prefer.
+1.	Speed. Normally, the shipping company do one to two shippment per day, and the shipping process will last for 2 to 7 busniess days. PAXI ships at anytime you prefer.
 2.	Location. We don’t have a store location. Customers ship their packages at anywhere they like. It feels like call a taxi to deliver your package.
 3.	Price. All the popular express companies operating the business with B2C mode. However, PAXI use C2C business mode which means we give users less limit but more authority to customize their packages, the user can even price their shipping fee up to how faster their desire to ship.
 
