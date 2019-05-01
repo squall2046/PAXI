@@ -137,7 +137,8 @@ class Profile extends Component {
                           {/* ==========================done============================ */}
 
                           <h4>{pack.title}</h4>
-                          <div>From: {pack.from} - To: {pack.to}</div>
+                          <div>From: {pack.from}</div>
+                          <div>To: {pack.to}</div>
                           <div>Receiver: {pack.receiver}</div>
                           <div>Package size: {pack.size}</div>
                           <div>Package weight: {pack.weight}</div>
