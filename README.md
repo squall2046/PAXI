@@ -52,13 +52,10 @@ User can reply or delete messages all the time.
 * open browser and load http://localhost:3000/
 
 #### 📬 Author
-Isaac Wu,
+Isaac Wu
 
-Abdullah Alamri,
-
-James Lamb
-<!-- * [Isaac Wu](https://github.com/squall2046)
-* [App demo](https://googlebooks-iw.herokuapp.com/) -->
+[Isaac Wu](https://github.com/squall2046)
+* [App demo](https://paxi-express.herokuapp.com/)
 
 ## Copyright
 © 2019 All Rights Reserved
