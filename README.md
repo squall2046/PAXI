@@ -7,7 +7,7 @@
 3.	Price. All the popular express companies operating the business with B2C mode. However, PAXI use C2C business mode which means we give users less limit but more authority to customize their packages, the user can even price their shipping fee up to how faster their desire to ship.
 ###
 
-* 👉 Click  [HERE](https://paxi-express.herokuapp.com/)   to check app demo
+* 👉 Click  [>>> HERE <<<](https://paxi-express.herokuapp.com/)   to check app demo
 #
 
 
