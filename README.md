@@ -53,7 +53,7 @@ User can reply or delete messages all the time.
 
 
 ![concert](./client/public/Snipaste_2019-04-29_00-54-24.png)
-![concert](./client/public/Snipaste_2019-04-29_00-54-39.png)
+<!--![concert](./client/public/Snipaste_2019-04-29_00-54-39.png) -->
 
 #### 🚛 Local Install
 
