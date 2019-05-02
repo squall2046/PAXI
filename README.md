@@ -10,6 +10,8 @@
 * 👉 Click  [>>> HERE <<<](https://paxi-express.herokuapp.com/)   to check app demo
 #
 
+![concert](./client/public/Snipaste_2019-04-29_00-54-24.png)
+<!--![concert](./client/public/Snipaste_2019-04-29_00-54-39.png) -->
 
 ### 📦 Profile Page
 ```
@@ -51,9 +53,6 @@ User can reply or delete messages all the time.
 - [x] CSS/Bootstrap
 - [x] Passport/Bcrypt
 
-
-![concert](./client/public/Snipaste_2019-04-29_00-54-24.png)
-<!--![concert](./client/public/Snipaste_2019-04-29_00-54-39.png) -->
 
 #### 🚛 Local Install
 
